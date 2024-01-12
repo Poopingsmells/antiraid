@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut icon" href="https://i.imgur.com/Mgwfwpj.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="../partials/header.ejs">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png"/>
+  <title>AntiRaid - Server Actions</title>
+</head>
+<body>
+<%- include("partials/header", { bot, user }) %>
+<center>
+<br>
+<% if (alert) { %>
+  <div class="alert alert-success" style="margin: 100px; width: auto;">
+    <b><%= alert %></b>
+  </div>
+<% }else if(error){ %>
+  <div style="margin: 100px; width: auto;" class="alert alert-danger">
+    <b style="color: white;"><%= error %></b>
+  </div>
+  <% } %>
+  <br>
+</center>
+<br>
+<a type="button" class="btn btn-warning" href="/servers/<%= guild.id %>">Back to dashboard</a>
+<br><br>
+<center>
+<h1 style="color: rgb(0, 102, 255);"><strong>Server Actions!</strong></h1>
+<br>
+<h4 style="color: white;"><strong>Server cases!</strong></h4>
+</form>
+<form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+  <div class="container">
+<% if(cases.length === 0){ %>
+  <img src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-256.png" style="width: 70px;">
+  <p style="font-size: 20px;">No infractions for this server</p><br>
+  <% }else{ %>
+    <% for (i = 0; i < cases.length; i++) { %>
+      <% bot.users.cache.get(cases[i].targetId) %>
+        <% } %>
+<% for (i = 0; i < cases.length; i++) { %>
+        <% let reason = ''; %>
+        <% let time = ''; %>
+        <% let member = ''; %>
+        <% let moderator = ""; %>
+        <% let duration = ""; %>
+        <% if(cases[i].reason == ''){ %>
+            <% reason = 'No reason Provided' %>
+            <% }else{ %>
+            <% reason = cases[i].reason %>
+            <% } %>
+            <% if(bot.users.cache.get(cases[i].modId)){ %>
+                <% moderator = bot.users.cache.get(cases[i].modId).tag %>
+                <% }else{ %>
+                    <% moderator = "AutoMod" %>
+                <% } %>
+                <% if(bot.users.cache.get(cases[i].targetId)){ %>
+                <% member = bot.users.cache.get(cases[i].targetId).tag %>
+                <% }else{ %>
+                    <% member = "Error occured" %>
+                <% } %>
+                <% if(cases[i].duration == undefined){ %>
+                  <% duration = 'No duration set for that action!' %> 
+                  <% }else{ %>
+                      <% duration = cases[i].duration %>
+                  <% } %>
+    <div class="card bg-secondary text-white mb-4" style="margin: 100px; width: 300px;">
+      <p style="color: currentColor;"><strong style="color: rgb(255, 255, 255); font-size: 30px;">Case number </strong>#<%= cases[i].caseId %><br>_____________<br><code>Action:</code> <strong><%= cases[i].type %></strong><br><code>Allegation:</code> <strong><%= member %></strong><br><code>Moderator: </code><strong><%= moderator %></strong><br><code>Reason: </code><strong><%= reason %></strong></code></p>
+      <br><center>
+        <button name="deletecase" value="<%= cases[i].caseId %>" type="button submit" style="width: 200px;" class="btn btn-danger">Delete</button>
+      </center>
+      <br><br>
+    </div>
+      <% } %>
+  <% } %>
+</div>
+</form>
+</center>
+</body>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<%- include("partials/footer") %>
+</html>

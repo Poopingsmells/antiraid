@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://i.imgur.com/Mgwfwpj.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png" />
+  <title>AntiRaid - Frequently Asked Questions</title>
+</head>
+
+<body>
+  <%- include("partials/header", { bot, user, }) %>
+  <center>
+  <h1><i class="fa fa-question"></i> Frequently Asked Questions</h1><hr style="width: 700px;"></center>
+  <center>
+      <div class="card-columns" style="column-count: 3; column-gap: 10px;">
+        <div class="card text-white bg-secondary mb-3" style="width: auto; margin: 100px;">
+            <div class="card-header">
+                <h4 style="color: darkred"> How do you host the website?</h2>
+                </div>
+                <div class="card-body">
+                    <p>Simple Answer: I have a VPS (Virtual Private Server) on which i host both website and bot</p>
+                </div>
+            </div>
+        <div class="card text-white bg-secondary mb-3" style="width: auto; margin: 100px;">
+            <div class="card-header">
+                <h4 style="color: darkred"> Are you in need of other developers?</h2>
+            </div>
+            <div class="card-body">
+                <p>Answer: Not right no, but you can apply for staff member by using the application page</p>
+            </div>
+        </div>
+        <div class="card text-white bg-secondary mb-3" style="width: auto; margin: 100px;">
+            <div class="card-header">
+                <h4 style="color: darkred"> Why were temporary events like tempmute and tempban disabled?</h2>
+                </div>
+            <div class="card-body">
+                <p>Answer: Their code was crashing the bot after sending over hundreds of error causing bot after sometime to restart and for sometime bot is unusuable </p>
+            </div>
+        </div>
+        <div class="card text-white bg-secondary mb-3" style="width: auto; margin: 100px;">
+            <div class="card-header">
+                <h4 style="color: darkred;">What does badges symbols means?</h2>
+                </div>
+                <div class="card-body">
+                    <p>
+                        <li><i class="fa fa-users"></i> - Member</li>
+                        <li><i class="fa fa-code"></i> - Developer</li>
+                        <li><i class="fa fa-wrench"></i> - Staff</li>
+                        <li><i class="fa fa-handshake-o"></i> - Partner</li>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <p>Badges will be reworked with probably v5.0.1</p>
+                </div>
+        </div>
+    </div>
+    </center>
+  <%- include("partials/footer") %>
+</body>
+
+</html>

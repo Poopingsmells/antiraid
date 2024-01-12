@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/K68mvIF.png" />
+  <link rel="shortcut icon" href="https://i.imgur.com/K68mvIF.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>AntiRaid - Profile</title>
+</head>
+<%- include("partials/header", { bot, user, path, }) %>
+
+<body>
+  <center>
+    <br>
+    <% if (alert) { %>
+      <div style="background-color: rgb(32, 235, 83);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 4px; padding: 6px">
+        <b><i class="fa fa-warning" style="color: black;"></i><%= alert %></b>
+      </div>
+    <% }else if(error){ %>
+      <div style="background-color: rgb(109, 10, 7);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 4px; padding: 6px">
+        <b><i class="fa fa-warning" style="color: black;"></i><%= error %> </b>
+      </div>
+      <% } %>
+  </center>
+  <br>
+  <br>
+  <% let avatar = "" %>
+  <%  avatar = !user.avatar ? "https://maxcdn.icons8.com/Share/icon/Logos/discord_logo1600.png" : `${bot.users.cache.get(user.id).displayAvatarURL({dynamic: true})}` %>
+  <center>
+    <div class="cardd profile">
+      <div class="leftt3">
+         <img src="<%= avatar %>" style="border-radius: 50%; display: flex; float: left; align-content: center;" width="100px" height="100px"><p style="font-size: 25px; display: flex; float: right; align-content: center;" class="infopr"> <%= user.username %>#<%= user.discriminator %></p>
+         <!-- <p><img src="<%= avatar %>" style="border-radius: 50px; padding: 10px;" width="90px" height="90px"><p style="font-size: 25px;"> <%= user.username %>#<%= user.discriminator %></p></p> -->
+      </div>
+    <hr>
+    <% if(profile){ %>
+      <% if(!profile.bio){ %>
+      <h2>Bio: I am a very mysterious person!</h2>
+      <% }else if(profile.bio){ %>
+      <h2><i class="fa fa-info"></i> Bio: <%= profile.bio %></h2>
+      <% } %>
+      <% if(profile.badge.length > 0) { %>
+        <% let u = profile.badge.map(x => badgest[x]).join(" ") %>
+        <h2><i class="fa fa-star"></i> Badges: <% profile.badge.map(x => { %>
+          <i class="<%= badgest[x]%>" title="<%- x %>"></i>
+         <% }) %></h2>
+        <% } %>
+      <h2><i class="fa fa-id-badge"></i> ID: <%= user.id %></h2>
+      <% }else{ %>
+      <h2><i class="fa fa-info"></i> Bio: No bio set</h2>
+      <% } %>
+      <h2><i class="fa fa-gavel"></i> Total Global Infractions: <%= cases.length %></h2>
+      <h3></h3>
+    </div>
+  </center>
+  <center>
+  <hr style="width: 800px;"></center>
+  <center>
+    <div class="cardd dangerzone">
+      <h3 style="font-size: 30px; color: red;"><i class="fa fa-times"></i> Danger Zone! Be careful what you do!</h3>
+      <hr>
+      <center>
+      <form style="margin-top: 1em;" method="POST">
+        <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+        <p>Write <strong>"i confirm that i want to delete my data"</strong> to delete your all data we are collecting!</p>
+        <input class="w3-input w3-border" style="border-radius: 5px; width:300px" maxlength="50" type="text"
+          name="captcha" value="" placeholder="i confirm that i want to delete my data">
+        <br>
+        <button style="width:50px; color: rgb(230, 123, 123);" name="requestdelete"
+          value="Don't try change the id neeba"><i class="fa fa-trash"></i> </button>
+      </form>
+      <br>
+      <hr>
+      <br>
+      <button style="width:150px;" class="button" onclick="opennick()">Update Information</button>
+    <br>
+    <br>
+    <div class="cardd popout" style="display: none; border-radius: 2px; height: auto;" id="nicknameopen">
+      <h3><i class="fa fa-cogs" style="size: 50px;"></i> Settings</h3>
+      <br>
+      <br>
+      <form style="margin-top: 1em;" method="POST">
+        <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+        <% if(profile){ %>
+        <% if(!profile.bio){ %>
+          <p> Bio </p>
+        <input class="input" style="border-radius: 10px;" maxlength="50" type="text" name="changebio"
+          value="I am a very mysterious person!" placeholder="i.e I am John i love programming!"><br><br>
+        <% }else if(profile.bio){ %>
+          <p> Bio </p>
+          <input class="input" style="border-radius: 10px;" maxlength="50" type="text" name="changebio"
+            value="<%- profile.bio %>" placeholder="i.e I am John i love programming!">
+        <% } %>
+        <% } %>
+       <br><br>
+        <button style="width:150px;" class="button" onclick="opennick()">Update</button>
+      </form>
+      <br>
+      <br>
+      <button class="vote close" onclick="closenick()">Close</button>
+    </div>
+    </center>
+    </div>
+    <br>
+    <br>
+    <br>
+  </center>
+  <hr style="margin-left: 200px; margin-right: 200px;">
+  <div class="container">
+    <% if(cases.length === 0){ %>
+    <img src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-256.png" style="width: 70px;">
+    <p style="font-size: 20px;">You are safe with no infractions!</p><br>
+    <% }else{ %>
+    <% for (i = 0; i < cases.length; i++) { %>
+    <% bot.users.fetch(cases[i].userID) %>
+    <% } %>
+    <% for (i = 0; i < cases.length; i++) { %>
+    <% let reason = ''; %>
+    <% let time = ''; %>
+    <% let member = ''; %>
+    <% let moderator = ""; %>
+    <% let server = ""; %>
+    <% if(bot.guilds.cache.get(cases[i].serverID)){ %>
+    <% server = bot.guilds.cache.get(cases[i].serverID).name %>
+    <% }else{ %>
+    <% server = "Can't get the guild!" %>
+    <% } %>
+    <% if(cases[i].reason == ''){ %>
+    <% reason = 'No reason Provided' %>
+    <% }else{ %>
+    <% reason = cases[i].reason %>
+    <% } %>
+    <% if(cases[i].time == undefined){ %>
+    <% time = 'No time' %>
+    <% }else{ %>
+    <% time = cases[i].time %>
+    <% } %>
+    <% if(bot.users.cache.get(cases[i].Moderator)){ %>
+    <% moderator = bot.users.cache.get(cases[i].Moderator).tag %>
+    <% }else{ %>
+    <% moderator = "Wasn't defined at this time" %>
+    <% } %>
+    <% if(bot.users.cache.get(cases[i].userID)){ %>
+    <% member = bot.users.cache.get(cases[i].userID).tag %>
+    <% }else{ %>
+    <% member = "Error occured" %>
+    <% } %>
+    <div class="cardd bug">
+      <p><strong style="color: rgb(255, 255, 255); font-size: 30px;">Case number
+        </strong>#<%= cases[i].case %><br>_____________<br><code>Action:</code>
+        <strong><%= cases[i].action %></strong><br><code>Allegation:</code>
+        <strong><%= member %></strong><br><code>Moderator: </code><strong><%= moderator %></strong><br><code>Time:
+        </code><strong><%= time %></strong><br>Server: <strong><%= server %></strong><br><code
+          style="font-size: 20px; color: gray;">_____________<br></code><strong><%= reason %></strong></code></p>
+    </div>
+    <% } %>
+    <% } %>
+  </div>
+  <script>
+    // Set the date we're counting down to
+    function opennick() {
+      document.getElementById("nicknameopen").style.animation = "fadeIn 0.4s";
+      document.getElementById("nicknameopen").style.display = "block";
+    }
+
+    function closenick() {
+      document.getElementById("nicknameopen").style.animation = "fadeIn 0.4s";
+      document.getElementById("nicknameopen").style = "display: none;";
+    }
+  </script>
+</body>
+
+</html>
+<br><br><br><br><br><br>
+<%- include("partials/footer") %>

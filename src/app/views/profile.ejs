@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png"/>
+  <link rel="shortcut icon" href="https://i.imgur.com/Mgwfwpj.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>AntiRaid - Privacy Policy</title>
+</head>
+<body>
+    <%- include("partials/header", { bot, user }) %>
+    <center><h1><i class="fa fa-vcard"></i> <%= user.username %>#<%= user.discriminator %></h1></center>
+    <div class="card-deck" style="margin: 50px;">
+        <div class="card bg-secondary text-white" style="width: 200px;">
+            <br><center><img src="<%= avatarURL %>" style="border-radius: 50%; width: 150px; align-content: center;"></center>
+            <div class="card-body">
+                <h5 class="card-title"><code><%= user.username %>#<%= user.discriminator %></code></h5>
+                <p class="card-text">ID: <code><%= user.id %></code></p>
+            </div>
+        </div>
+        <div class="card bg-secondary text-white" style="width: 200px;">
+            <div class="card-header">
+                <h3>User Information</h3>
+            </div>
+            <div class="card-body">
+                <% let flgs = flags.map(x => badges_check[x]) %>
+                <% let str; %>
+                <% if (flgs.length > 0) { %>
+                    <% str = 'You don\'t have any badges'%>
+                    <% } %>
+                    <% let flags3 = flgs.map(n => { %>
+                        <h5 class="card-title">Flags: <img src="<%- n.url %>" style="width: 20px;" title="<%= n.name %>"></h5>
+                        <% }) %>
+                <h5 class="card-text">Global Infractions: <code><%= cases.length %></code></h5>
+                      <h5 class="card-text">Blacklisted from using AntiRaid? <code><%= blacklist %></code></h5>
+                      <h5 class="card-text">Bio: <code><%= userr.bio %></code></h5>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<%- include("partials/footer") %>

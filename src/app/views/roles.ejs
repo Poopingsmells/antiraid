@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="shortcut icon" href="https://i.imgur.com/Mgwfwpj.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png"/>
+<title>AntiRaid - <%= guild.name %></title>
+</head>
+<body>
+<%- include("partials/header", { bot, user }) %>
+<center>
+  <br>
+  <% if (alert) { %>
+  <div class="alert alert-success" style="width: auto;">
+      <b><i class="fa fa-warning" style="color: black;"></i><%= alert %></b>
+    </div>
+  <% }else if(error){ %>
+    <div class="alert alert-danger" style="width: 700px;">
+      <b><i class="fa fa-warning" style="color: black;"></i><%= error %> </b>
+    </div>
+    <% } %>
+  </center>
+<br>
+<br>
+<center>
+  <h1>Server Roles Configuration</h1><br><br><br><br>
+  <h1><strong>Add muted role for server muted members </strong></h1>
+  <form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+    <% let therole = settings.mutedrole %>
+  <% if(therole == "String"){ %> 
+    <%  therole = "None" %> 
+    <% }else{ %>
+      <% if(!guild.roles.cache.get(settings.mutedrole)){ %>
+        <% therole = "None" %>
+        <% }else{ %>
+    <% therole = guild.roles.cache.get(settings.mutedrole) %>
+    <% } %>
+    <% } %>
+  <h3>The currently muted role: <strong style="color: <%= therole.hexColor %>;">&CircleDot; <%= therole.name %></strong></h3>
+  <% if(guild.me.permissions.has("MANAGE_ROLES")){ %>
+  <select class="form-control" name="muterolesettings" id="muterolesettings" style="width: auto;">
+    <option value="<%= settings.mutedrole %>" style="color: <%= therole.hexColor %>;">&CircleDot; <%= therole.name %></option>
+    <option value="remove">None</option>
+   <% guild.roles.cache.filter(r => r.id !== guild.id).sort((b, a) => a.position - b.position).map(role => { %>
+    <option value="<%= role.id %>" style="color: <%= role.hexColor %>;">&CircleDot; <%= role.name %></option>
+    <% }) %>
+  </select>
+  <% }else{ %>
+    <p style="color: red">Bot is missing manage roles permissions! re add then try again</p>
+    <% } %>
+  <br>
+  <br>
+  <hr>
+  <h1><strong>Add role to add to members when they join the server</strong></h1>
+<form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+  <% let theautorole = settings.autorole %>
+  <% if(theautorole == "String"){ %> 
+    <%  theautorole = "None" %> 
+    <% }else{ %>
+      <% if(!guild.roles.cache.get(settings.autorole)){ %>
+        <% theautorole = "None" %>
+        <% }else{ %>
+    <% theautorole = guild.roles.cache.get(settings.autorole) %>
+    <% } %>
+    <% } %>
+  <h3>The currently auto role: <strong style="color: <%= theautorole.hexColor %>;">&CircleDot; <%= theautorole.name %></strong></h3>
+  <% if(guild.me.permissions.has("MANAGE_ROLES")){ %>
+  <select class="form-control" name="autorole" id="autorole" style="width: auto;">
+    <option value="<%= settings.autorole %>" style="color: <%= theautorole.hexColor %>;">&CircleDot; <%= theautorole.name %></option>
+    <option value="remove">None</option>
+   <% guild.roles.cache.filter(r => r.id !== guild.id).sort((b, a) => a.position - b.position).map(role => { %>
+    <option value="<%= role.id %>" style="color: <%= role.hexColor %>;">&CircleDot; <%= role.name %></option>
+    <% }) %>
+  </select>
+  <% }else{ %>
+    <p style="color: red">Bot is missing manage roles permissions! re add then try again</p>
+    <% } %>
+  <br>
+  <br>
+  <hr>
+  <h1><strong>Add role to bots when they join servers</strong></h1>
+  <form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+    <% let botautorole = settings.botautorole %>
+    <% if(botautorole == "String"){ %> 
+      <%  botautorole = "None" %> 
+      <% }else{ %>
+        <% if(!guild.roles.cache.get(settings.botautorole)){ %>
+          <% botautorole = "None" %>
+          <% }else{ %>
+      <% botautorole = guild.roles.cache.get(settings.botautorole) %>
+      <% } %>
+      <% } %>
+    <h3>The currently bot auto role: <strong style="color: <%= botautorole.hexColor %>;">&CircleDot; <%= botautorole.name %></strong></h3>
+    <% if(guild.me.permissions.has("MANAGE_ROLES")){ %>
+    <select class="form-control" name="botautorole" id="botautorole" style="width: auto;">
+      <option value="<%= settings.botautorole %>" style="<%= botautorole.hexColor %>">&CircleDot; <%= botautorole.name %></option>
+      <option value="remove">None</option>
+     <% guild.roles.cache.filter(r => r.id !== guild.id).sort((b, a) => a.position - b.position).map(role => { %>
+      <option value="<%= role.id %>" style="color: <%= role.hexColor %>;">&CircleDot; <%= role.name %></option>
+      <% }) %>
+    </select>
+    <% }else{ %>
+      <p style="color: red">Bot is missing manage roles permissions! re add then try again</p>
+      <% } %>
+    <br>
+    <br>
+<button style="width:170px" class="btn btn-success" type="button submit">Save Changes</button>
+<a class="btn btn-warning" type="button" href="/servers/<%= guild.id %>">Back to dashboard</a>
+        </form>
+      </center>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<%- include("partials/footer") %>
+</body>
+</html>

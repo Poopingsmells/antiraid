@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://i.imgur.com/a/THYQkEE" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/K68mvIF.png" />
+  <title>AntiRaid - Applications</title>
+</head>
+
+<body>
+  <%- include("partials/header", { bot, user, path, }) %>
+  <center>
+  <h1 class="fa fa-eercast" style="font-size: 40px;"> To-Do List</h1>
+  <% if (alert) { %>
+    <div style="background-color: rgb(32, 235, 83);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 4px; padding: 6px">
+      <b><i class="fa fa-warning" style="color: black;"></i> Output: <%= text %></b>
+    </div>
+  <% }else if(error){ %>
+    <div style="background-color: rgb(109, 10, 7);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 4px; padding: 6px">
+      <b><i class="fa fa-warning" style="color: black;"></i><%= error %> </b>
+    </div>
+    <% } %>
+  <form style="margin-top: 1em;" method="POST">
+    <div class="cardd area2717">
+        <p>Provide some numbers!</p>
+        <textarea name="code_number" id="numberc" cols="30" rows="10" required placeholder="2717 231"></textarea>
+        <br>        <button type="submit"> Submit! </button>
+    </div>
+</form>
+</center>
+  <%- include("partials/footer") %>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png"/>
+  <link rel="shortcut icon" href="https://i.imgur.com/Mgwfwpj.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>AntiRaid - Privacy Policy</title>
+</head>
+<body>
+    <%- include("partials/header", { bot, user }) %>
+    <center><h1><i class="fa fa-lock"></i> Privacy Policy</h1>
+    <hr style="width: 800px;">
+  </center>
+<div class="card-columns" style="column-count: 3; margin: 100px; column-gap: 50px;">
+  <div class="card text-white bg-secondary mb-3">
+      <div class="card-header"><h1 style="color: darkred;"><strong>Data</strong></h1></div>
+    
+    <div class="card-body"><p>We are using mongodb to store data , but our bot is moderation so there's no data we need to store about user , except infractions and profile settings bio.</p> </div>
+  </div>
+  <div class="card text-white bg-secondary mb-3">
+    <div class="card-header"><h2 style="color: darkred;"><strong>Request to delete</strong></h1></div>
+    
+        <div class="card-body"> <p>We have updated site now if you want delete your data you can go throw the profile and click the button!, but before that you need to read ToS (scroll down)</p> </div>
+  </div>
+  <div class="card text-white bg-secondary mb-3">
+    <div class="card-header"><h2 style="color: darkred;"><strong>What data we collect when you auth with website</strong></h1></div>
+    
+        <div class="card-body"> <p>we collect just what servers you are in & avatar, username,id but once you sign out we delete it!</p> </div>
+  </div>
+  <div class="card text-white bg-secondary mb-3">
+    <div class="card-header"><h2 style="color: darkred;"><strong>For how long do we store that data</strong></h1></div>
+    
+        <div class="card-body"> 
+            <p>We store your data while you are registered in the website! Once you request to delete your data the data will be permanently deleted from database!</p> 
+        </div>
+  </div>
+  <div class="card text-white bg-secondary mb-3">
+    <div class="card-header">
+        <h2 style="color: darkred;"><strong>What Discord Server Data do we collect?</strong></h1>
+    </div>
+        <div class="card-body">
+      <p>We store only these things for your server:</p>
+      <ul>
+        <li>Server ID</li>
+        <li>Total Members</li>
+        <li>Total Roles</li>
+        <li>Total Channels</li>
+        <li>Infractions (Warns, bans, mute, lockdowns etc...)</li>
+        <li>The settings you have set at the dashboard</li>
+      </ul></div>
+  </div>
+  <div class="card text-white bg-secondary mb-3">
+      <div class="card-header">
+          <h2 style="color: darkred;"><strong>For how long do we store the discord server data</strong></h2>
+      </div>
+      <div class="card-body">
+          <p>We store this data until the bot is in the server! Once you remove the bot all settings, infractions and actions will be deleted</p>
+      </div>
+  </div>
+</div>
+</body>
+</html>
+<%- include("partials/footer") %>

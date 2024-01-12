@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png"/>
+  <link rel="shortcut icon" href="https://i.imgur.com/Mgwfwpj.png" style="border-radius: 80px;" type="image/x-icon">
+<title>AntiRaid - <%= guild.name %></title>
+</head>
+<body>
+<%- include("partials/header", { bot, user}) %>
+
+<center>
+  <% if (alert) { %>
+  <div class="alert alert-success" style="width: 600px;">
+      <b><i class="fa fa-warning" style="color: black;"></i><%= alert %></b>
+    </div>
+  <% }%>
+  <div class="alert alert-info" style="width: 500px;">
+<b>Anti Logs are currently in WIP Phase! Expect updates in our server</b>
+  </div>
+  </center>
+<br>
+<br>
+<div class="card-columns" style="column-count: 3;">
+  <form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+    <% let antispamen = settings.antispam %>
+    <% if(antispamen == "0"){ %>
+      <%  antispamen = "Disabled" %>
+      <% }else if(antispamen == "1"){ %>
+        <% antispamen =  "Enabled" %>
+        <% }else{ %>
+          <%  antispamen = "Disabled" %>
+          <% } %>
+          <center>
+            <div class="card bg-secondary text-white mb-3" style="margin: 50px;">
+              <div class="card-header">
+                <h1><strong>Anti Spam</strong></h1>
+              </div>
+              <div class="card-body">
+                <p>Only anti swear applies to members without manage manages permissions .</p>
+                <p><code>Currently anti swear/links is <%= antispamen %></code></p>
+                <% if(guild.me.permissions.has("MANAGE_MESSAGES")){ %>
+                  <select class="form-control" name="antispam" style="width: auto; background-color: black; color: white;" disabled>
+                    <option value="<%= settings.antispam %>"><%= antispamen %></option>
+                    <% if(settings.antispam == "0"){ %>
+                      <option value="1">Enable</option>
+                      <% }else if(settings.antispam == "1"){ %>
+                        <option value="0">Disable</option>
+                        <% }else{ %>
+                          <option value="1">Enable</option>
+                          <% } %>
+                        </select><br><br><br>
+                      </div>
+                      </div>
+  <div class="card bg-secondary text-white mb-3" style="margin: 50px;">
+    <div class="card-header">
+      <h1><strong>Anti Swear/Links Logs</strong></h1>
+    </div>
+  <div class="card-body">
+    <p>Logs all anti type of actions ( Currently WIP ) </p>
+    <p></p><code>Currently anti logs are <%= 'WIP' %></code><br><br>
+    <select name="antiswearlogs" id="alogs" disabled="disabled">
+      <option value="disabled" disabled>Currently in the works! </option>
+  </select><br><br><br>
+  <% }else{ %>
+    <p style="color: red">Bot is missing manage messages permissions! re-add it then try again</p>
+    <% } %>
+    <% let antiraiden = settings.AntiRaid %>
+    <% if(antiraiden == "0"){ %>
+      <%  antiraiden = "Disabled" %>
+      <% }else if(antiraiden == "1"){ %>
+        <% antiraiden =  "Enabled" %>
+        <% }else{ %>
+          <%  antiraiden = "Disabled" %>
+          <% } %>
+        </div>
+          </div>
+          <div class="card bg-secondary text-white mb-3" style="margin: 50px; width: auto;">
+            <div class="card-header">
+
+              <h1><strong>AntiRaid</strong></h1>
+            </div>
+            <div class="card-body">
+              <p>AntiRaid is dangerous, lock members from joining server!, and send private message to them! explaining! think once, twice before enable</p>
+              <p><code>Currently AntiRaid is <%= antiraiden %></code></p>
+              <% if(guild.me.permissions.has("KICK_MEMBERS")){ %>
+                <select class="form-control" name="antiraid" style="width: auto; background-color: black; color: white;">
+                  <option value="<%= settings.AntiRaid %>"><%= antiraiden %></option>
+                  <% if(settings.AntiRaid == "0"){ %>
+                    <option value="1">Enable</option>
+                    <% }else if(settings.AntiRaid == "1"){ %>
+                      <option value="0">Disable</option>
+                      <% }else{ %>
+                        <option value="1">Enable</option>
+                        <% } %>
+                      </select><br><br>
+                    </div>
+                    <% }else{ %>
+                      <p style="color: red">Bot is missing kick members permissions! re add then try again</p>
+                      <% } %>
+                      <br><br><br> </div>
+                      <div class="card bg-secondary text-white mb-3" style="margin: 50px; width: auto;">
+                        <div class="card-header">  
+                          <h1><strong>Anti Raid Logs</strong></h1>
+                        </div>
+                        <div class="card-body">
+                          <p>Logs when member joins and is kicked when antiraid mode is enabled</p>
+                          <code>Currently this is in the works</code><br><br>
+                          <select name="antiraidlogs" id="alogs" disabled="disabled">
+                            <option value="disabled" disabled>Currently in the works! </option>
+                          </select>
+                        </div>
+  </div>
+  <div class="card bg-secondary text-white mb-3" style="margin: 50px; width: 500px;">
+    <div class="card-header">
+              <h1>Chat Moderation</h1>
+            </div>
+            <div class="card-body">
+              <p>
+                <li>Links</li>
+                <li>Profanity</li>
+                <li>Webhooks</li>
+              </p>
+              <hr>
+              <p>Links</p>
+              <p><code>Currently Moderating Links is: <%= settings.moderateLinks ? "Enabled" : "Disabled"%> </code></p>
+              <select class="form-control" name="links" id="links">
+                <option value="<%= settings.moderateLinks %>"><%= settings.moderateLinks ? "Enabled" : "Disabled"%></option>
+                <option value="true">Enabled</option>
+                <option value="false">Disabled</option>
+              </select>
+              <hr>
+              <p>Profanity</p>
+              <p><code>Currently Moderating Profanity is: <%= settings.moderateProfanity ? "Enabled" : "Disabled"%> </code></p>
+              <select class="form-control" name="prof" id="prof">
+                <option value="<%= settings.moderateProfanity %>"><%= settings.moderateProfanity ? "Enabled" : "Disabled"%></option>
+                <option value="true">Enabled</option>
+                <option value="false">Disabled</option>
+              </select>
+              <hr>
+              <p>Webhooks</p>
+              <p><code>Currently Moderating Webhooks is: <%= settings.moderateWebhooks ? "Enabled" : "Disabled"%> </code></p>
+              <select class="form-control" name="webhooks" id="webhooks">
+                <option value="<%= settings.moderateWebhooks %>"><%= settings.moderateWebhooks ? "Enabled" : "Disabled"%></option>
+                <option value="true">Enabled</option>
+                <option value="false">Disabled</option>
+              </select>
+            </div>
+          </div><br>
+          <center>
+            
+            <button style="width:170px" class="btn btn-success" type="button submit">Update</button>
+            <a class="btn btn-warning" type="button" href="/servers/<%= guild.id %>">Back to dashboard</a>
+          </center>
+          
+        </form>
+      </div>
+</div>
+      </center>
+      <br><br><br>
+<%- include("partials/footer") %>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png"/>
+  <link rel="shortcut icon" href="https://i.imgur.com/Mgwfwpj.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>AntiRaid - Feedback</title>
+</head>
+<body>
+<%- include("partials/header", { bot, user }) %>
+<center>
+  <br>
+  <% if (alert) { %>
+  <div class="alert alert-success" style="width: auto;">
+      <b><i class="fa fa-warning" style="color: black;"></i><%= alert %></b>
+    </div>
+  <% }else if(error){ %>
+    <div class="alert alert-danger" style="width: 700px;">
+      <b><i class="fa fa-warning" style="color: black;"></i><%= error %> </b>
+    </div>
+    <% } %>
+    <br>
+  </center>
+<form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+<center><h1>Send your feedback about our project!</h1></center>
+<center><textarea class="input" maxlength="3900" type="text" name="feedback" style="width: 600px; height: 150px; border-radius: 2px;" placeholder="Very interesting and beautiful bot"></textarea><br><br></center>
+<center><button style="width:170px" class="button" type="submit">Submit Feedback!</button></center>
+</form>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<%- include("partials/footer") %>
+</body>
+</html>

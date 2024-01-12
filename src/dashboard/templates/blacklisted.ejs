@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://i.imgur.com/K68mvIF.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/K68mvIF.png" />
+  <title>AntiRaid - Blacklisting</title>
+</head>
+
+<body>
+  <%- include("partials/header", { bot, user, path, }) %>
+  <!-- <center><h1 class="fa fa-times" style="font-size: 40px;"> Blacklisted </h1></center> -->
+  <center><p style="font-size: 30px;"><i class="fa fa-server"></i> <i class="fa fa-times"></i> Blacklisted</p></center>
+  <div class="container"><center><div class="left">
+  <% bl_guilds.forEach(x => { %>
+<div class="cardd blacklisted">
+    <p><strong>Guild ID:</strong> <%- x.GuildID %></p>
+    <hr>
+    <p><strong>Type:</strong> Guild / Server</p>
+    <hr>
+    <!-- <p><strong>Server Name: </strong> <%- x.GuildID %></p> -->
+    <!-- <p><strong>Owner: </strong> <%- bot.guilds.cache.get/(x.GuildID).ownerID %></p> -->
+    <!-- <hr> -->
+    <p><strong>Reason: </strong> <%- x.Reason %></p>
+</div>
+<%  }) %>
+</center>
+  <% bl_users.forEach(x => { %>
+    <div class="cardd blacklisted">
+        <p><strong>User ID:</strong> <%- x.userID %></p>
+        <hr>
+        <p><strong>Type:</strong> User</p>
+        <hr>
+        <p><strong>User Tag:</strong> <%- bot.users.cache.get(x.userID).tag %></p>
+        <hr>
+        <p><strong>Reason:</strong> <%- x.Reason %></p>
+    </div>
+     <% }) %>
+  </div>
+</div>
+<%- include("partials/footer") %>
+</body>
+
+</html>

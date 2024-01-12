@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="shortcut icon" href="https://i.imgur.com/Mgwfwpj.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png"/>
+<title>AntiRaid - Welcome - Leave</title>
+</head>
+<body>
+<%- include("partials/header", { bot, user }) %>
+<center>
+  <br>
+  <% if (alert) { %>
+    <div class="alert alert-success" style="width: 700px;">
+        <b><i class="fa fa-warning" style="color: black;"></i><%= alert %></b>
+      </div>
+    <% }else if(error){ %>
+      <div class="alert alert-danger" style="width: 700px;">
+        <b><i class="fa fa-warning" style="color: black;"></i><%= error %> </b>
+      </div>
+      <% } %>
+  </center>
+<br>
+<br>
+<center>
+  <h1><strong>Configure welcome events for your server!</strong></h1>
+<form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+  <% let thechannel = settings.welcomeChannel %>
+  <% if(thechannel == "String"){ %> 
+    <%  thechannel = "None" %> 
+    <% }else{ %>
+      <% if(!guild.channels.cache.get(settings.welcomeChannel)){ %>
+        <% thechannel = "None" %>
+        <% }else{ %>
+          <% thechannel = guild.channels.cache.get(settings.welcomeChannel).name %>
+            <% } %>
+            <% } %>
+            <h3>The currently welcome channel: <%= thechannel %></h3>
+            
+  <select class="form-control" name="welcomechannel" style="width: auto;">
+    <option value="<%= settings.welcome %>"><%= thechannel %></option>
+    <option value="None">None</option>
+   <% guild.channels.cache.filter(t => t.type === 'GUILD_TEXT').sort((b, a) => b.position - a.position).map(channel => { %>
+    <% if(channel.permissionsFor(guild.me).has("SEND_MESSAGES")){ %>
+    <option value="<%= channel.id %>"># <%= channel.name %></option>
+    <% } %>
+    <% }) %>
+  </select>
+  <br>
+  <br>
+  <center>
+    <p>Set a welcome message, leave it empty if you want it to send random messages</p>
+    <% let welmsg = ""; %>
+    <% if(settings.welcomeMsg == "String"){ %>
+      <% }else if(settings.welcomeMsg !== "String"){ %>
+        <% welmsg = settings.welcomeMsg %>
+        <% } %>
+        <textarea class="input2" maxlength="500" type="text" name="welcomemsg" style="width: 600px; height: 150px;" placeholder="i.e Welcome {member} to {guild.name}."><%= welmsg %></textarea>
+              <br>
+              <br>
+              <hr style="margin-left: 100px; margin-right: 100px;">
+              <h1><strong>Set Leave for server!</strong></h1>
+              <% let thechannelleave = settings.leaveChannel %>
+  <% if(thechannelleave == "String"){ %> 
+    <%  thechannelleave = "None" %> 
+    <% }else{ %>
+      <% if(!guild.channels.cache.get(settings.leaveChannel)){ %>
+            <% thechannelleave = "None" %>
+            <% }else{ %>
+                <% thechannelleave = guild.channels.cache.get(settings.leaveChannel).name %>
+                <% } %>
+        <% } %>
+        <h3>The currently leave channel: <%= thechannelleave %></h3>
+
+        <select class="form-control" name="leavechannel" style="width: auto;">
+    <option value="<%= settings.leaveChannel %>"><%= thechannelleave %></option>
+    <option value="None">None</option>
+    <% guild.channels.cache.filter(t => t.type === 'GUILD_TEXT').sort((b, a) => b.position - a.position).map(channel => { %>
+      <% if(channel.permissionsFor(guild.me).has("SEND_MESSAGES")){ %>
+        <option value="<%= channel.id %>"># <%= channel.name %></option>
+        <% } %>
+        <% }) %>
+      </select>
+      <br>
+      <br>
+      <center>
+        <% let levmsg = ""; %>
+        <% if(settings.leaveMsg == "String"){ %>
+          <% }else if(settings.leaveMsg !== "String"){ %>
+            <% levmsg = settings.leaveMsg %>
+            <% } %>
+            <p>Set a leave message, leave it empty if you want it send random messages</p>
+            <textarea class="input2" maxlength="500" type="text" name="leavemsg" style="width: 600px; height: 150px;" placeholder="i.e goodbye {member} see you later"><%= levmsg %></textarea>
+          </center>
+          <br>
+          <br>
+          <h3>Select Type of message! Valid for Leave messages too...</h3>
+          <p>embed = embed messages</p>
+          <p>normal = normal messages</p>
+          <select class="form-control" name="typemsg" style="width: auto;">
+            <option value="<%= settings.EmbedsForJoinLeave %>"> <%- settings.EmbedsForJoinLeave || 'Not Set'%></option>
+            <option value="embed"> Embed message</option>
+            <option value="normal"> Normal Message</option>
+          </select>
+          <center>
+            <br><br>
+            <p>Welcome - leave regex , and what it does</p><br>
+            <li>More RegEx's are coming very soon!</li><br>
+            <li style="color: red;"> Read-Only</li><br>
+            <textarea class="form-control regex" maxlength="500" type="text" style="width: 600px; height: 150px;" readonly><%= "{member} For member mention!\n{member.tag} For member tag\n{guild.name} for guild name\n{guild.memberCount} for guild members count\n{member.username} for member name" %></textarea>
+          </center><br><br><br>
+          <button style="width:170px" class="btn btn-success" type="button submit">Update</button>
+          <a class="btn btn-warning" type="button" href="/servers/<%= guild.id %>">Back to dashboard</a>
+        </form>
+      </center>
+<br><br>
+<%- include("partials/footer") %>
+</body>
+</html>

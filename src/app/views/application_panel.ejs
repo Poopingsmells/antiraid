@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://i.imgur.com/Mgwfwpj.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png" />
+  <title>AntiRaid - Applications Panel</title>
+</head>
+
+<body>
+  <%- include("partials/header", { bot, user, path, }) %>
+  <center>
+  <h1 class="fa fa-code" style="font-size: 40px;"> Applications Panel</h1>
+  <% if (alert) { %>
+  <div class="alert alert-success" style="width: auto;">
+      <b><i class="fa fa-warning" style="color: black;"></i> <%= alert %></b>
+    </div>
+  <% }else if(error){ %>
+    <div class="alert alert-danger" style="width: auto;">
+      <b><i class="fa fa-warning" style="color: black;"></i> <%= error %> </b>
+    </div>
+    <% } %>
+    <br>
+    <hr style="width: 800px;">
+    <div class="container">
+  <form style="margin-top: 1em;" method="POST">
+    <div class="cardd devpanel">
+        <p>Change Applications Status!</p>
+        <select name="status" id="statys" required>
+            <option value="closed">Closed</option>
+            <option value="open">Open</option>
+        </select>
+        <br><br>
+        <button type="submit"> Submit! </button>
+    </div>
+</form>
+</div>
+</center>
+  <%- include("partials/footer") %>
+</body>
+
+</html>

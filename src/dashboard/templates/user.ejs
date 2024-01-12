@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/K68mvIF.png" />
+  <link rel="shortcut icon" href="https://i.imgur.com/K68mvIF.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>AntiRaid - Profile</title>
+</head>
+<%- include("partials/header", { bot, user, path, }) %>
+
+<body>
+  <center>
+    <br>
+    <% if (alert) { %>
+    <div
+      style="background-color: rgb(151, 255, 177);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 20px; padding: 6px">
+      <b style="color: rgb(70, 150, 70);"><%= alert %></b>
+    </div>
+    <% }else if(error){ %>
+    <div
+      style="background-color: rgb(255, 87, 87);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 20px; padding: 6px">
+      <b style="color: white;"><%= error %></b>
+    </div>
+    <% } %>
+  </center>
+  <br>
+  <br>
+  <% let avatar = "" %>
+  <%  avatar = !bot.users.cache.get(userconf.userID).avatar ? "https://maxcdn.icons8.com/Share/icon/Logos/discord_logo1600.png" : `https://cdn.discordapp.com/avatars/${userconf.userID}/${bot.users.cache.get(userconf.userID).avatar}.png?size=256` %>
+  <center>
+    <div class="cardd profile">
+      <div class="left">
+        <p style="color: white;"><img src="<%= avatar %>" style="border-radius: 50px;" width="60px" height="60px"><b style="font-size: 25px; color: white;"> <%- bot.users.cache.get(userconf.userID).username %>#<%- bot.users.cache.get(userconf.userID).discriminator %></b>
+    </div>
+    <hr>
+    <h6 style="font-size: 20px;">Profile Information</h6>
+    <hr>
+    <% if(userconf){ %>
+      <% if(!userconf.bio){ %>
+      <h2>Bio: I am a very mysterious person!</h2>
+      <% }else if(userconf.bio){ %>
+      <h2><i class="fa fa-info"></i> Bio: <%= userconf.bio %></h2>
+      <% } %>
+      <% if(userconf.badge.length > 0) { %>
+        <h2><i class="fa fa-star"></i> Badges: <% userconf.badge.map(x => { %>
+          <i class="<%= badgest[x]%>"></i>
+         <% }) %></h2>
+        <% } %>
+      <h2><i class="fa fa-id-badge"></i> ID: <%= userconf.userID %></h2>
+      <% }else{ %>
+      <h2><i class="fa fa-info"></i> Bio: Yooo im cool</h2>
+      <% } %>
+      <hr>
+    </div>
+  </center>
+  <center></center>
+  <script>
+    // Set the date we're counting down to
+    function opennick() {
+      document.getElementById("nicknameopen").style.animation = "fadeIn 0.4s";
+      document.getElementById("nicknameopen").style.display = "block";
+    }
+
+    function closenick() {
+      document.getElementById("nicknameopen").style.animation = "fadeIn 0.4s";
+      document.getElementById("nicknameopen").style = "display: none;";
+    }
+  </script>
+</body>
+
+</html>
+<%- include("partials/footer") %>

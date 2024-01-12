@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://i.imgur.com/K68mvIF.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/K68mvIF.png" />
+  <title>AntiRaid - Partners</title>
+</head>
+<body>
+  <%- include("partials/header", { bot, user, path, }) %>
+  <center><h1><i class="fa fa-handshake-o"></i><strong> Partners</strong></h1></center>
+  <div class="container">
+    <% bot.config.partners.forEach(async x => { %>
+      <div class="cardd partners">
+      <% let imgs = "" %>
+      <% if(!bot.guilds.cache.get(x.guildID)) { %>
+      <% imgs = x.icon %>
+      <% } %>
+        <% let avatar = ""; %>
+        <% if(!x.botID) { %>
+          <h2 style="height: auto; width: auto;"><img src="<%- imgs %>" height="50px" width="50px" border-radius="30%"> <strong> <%- x.name %></strong></h2>  
+       <% } else { %>
+        <h2 style="height: auto; width: auto;"><img src="https://cdn.discordapp.com/avatars/<%- x.botID %>/<%- bot.users.cache.get(x.botID).avatar %>.webp" height="50px" width="50px" border-radius="30%"> <strong> <%- x.name %></strong></h2>
+      <% } %>
+        <% let own = x.owner.map(s => bot.users.cache.get(s).tag) %>
+        <% if(!x.owner.map(s => bot.users.cache.get(s))) { %> 
+        <% own = x.owner.map(s => bot.users.fetch(s).username) %>
+        <% } %>
+        <hr style="width: auto;">
+        <h4>Owner(s): <strong> <%- own %></strong></h4>
+        <hr style="width: auto;">
+        <h5 style="height: auto; width: auto; font-size: 17px;"><%- x.description %></h5>
+        <hr style="width: auto;">
+        <br>
+        <% if(x.Invite) { %>
+          <a href="<%- x.Invite %>" class="button partners"><i class="fa fa-plus"></i> Invite</a> 
+       <% } %>
+        <a href="<%- x.SServer%>" class="button partners"><i class="fa fa-vcardd"></i> Discord</a> 
+      <br><br>
+      </div>
+    <% }) %>
+            </div>
+            <center>
+    <hr style="width: 800px;">
+    <h2><i class="fa fa-question"></i> Wonder How to get Partnered with AntiRaid?</h2>
+    <p>A: Join Our HQ Discord Server and select partnership requirements channel! <br> If u meet them You can Dm <strong><%= bot.users.cache.get("775855009421066262").tag %> or <%= bot.users.cache.get("744825560034705508").tag %></strong></p>
+  </center>
+    <%- include("partials/footer") %>
+</body>
+
+</html>

@@ -1,0 +1,620 @@
+<html lang="en">
+<script>function setTheme(themeName) {
+    localStorage.setItem('theme', themeName);
+    document.documentElement.className = themeName;
+  }
+
+  // function to toggle between light and dark theme
+  function toggleTheme() {
+    if (localStorage.getItem('theme') === 'theme-red') {
+      setTheme('root');
+    } else {
+      setTheme('theme-red');
+    }
+  }
+
+  // Immediately invoked function to set the theme on initial load
+  (function () {
+    if (localStorage.getItem('theme') === 'theme-red') {
+      setTheme('theme-red');
+      document.getElementById('slider').checked = true;
+    } else {
+      setTheme('root');
+      document.getElementById('slider').checked = false;
+    }
+  })();</script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="og:description"
+    content="AntiRaid | Server protection at it's highest" />
+  <meta name="og:image" content="https://i.imgur.com/Mgwfwpj.png" />
+  <meta name="og:title" content="AntiRaid" />
+  <meta name="theme-color" content="#00ffff" />
+  <meta name="keywords"
+    content="Discord, Bots, anti, antiraid bot, dank memer, mee6, dyno, lists, discord bots, discord bots list, antiraid by striker, anti">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js'></script> -->
+  <script src="https://kit.fontawesome.com/089e55c342.js" crossorigin="anonymous"></script>
+  <button style="animation: fadeIn 0.4s;" onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-sort-up"></i></button>
+              <center>
+                <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+                  <a href="/" class="navbar-brand"><img src="<%- bot.user.displayAvatarURL() %>" alt="" style="width: 50px;"></a>  
+                  <!-- <a href="/"><i class="fa fa-home"></i> Home</a> -->
+                      <a href="/commands"><i class="fa fa-bars"></i> Commands</a>
+                      <a target="_blank" href="/discord"><i class="fa fa-users"></i> Discord</a>
+                      <a href="/servers"><i class="fa fa-tachometer"></i> Dashboard</a>
+                      <a href="/staff"><i class="fa fa-user-circle-o"></i> Staff Team</a>
+                      <a href="/partners"><i class="fa fa-handshake-o"></i> Partners</a>
+                      <a href="/apply"><i class="fa fa-laptop"></i> Apply</a>
+                      <% if (user) { %>
+                        <ul class="nav-item dropdown">
+                          <% let avatar="" %>
+                          <% avatar= !user.avatar ? "https://maxcdn.icons8.com/Share/icon/Logos/discord_logo1600.png" : `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.webp` %>
+                          <a class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="<%= avatar %>" style="border-radius: 50px; width: 40px;">
+                            <%= user.username %>
+                          </a>
+                          <li class="dropdown-menu dropdown-menu-right bg-secondary text-white mb-3" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="/profile"><i class="fa fa-user"></i> Profile</a>
+                          <a class="dropdown-item" href="/profile/edit"><i class="fa fa-pen"></i> Edit Profile</a>
+                          <% if(bot.config.staff.includes(user.id)) { %>
+                          <a class="dropdown-item" href="/blacklist/panel"><i class="fa fa-times"></i> Blacklist</a>
+                          <a class="dropdown-item" href="/blacklist/view"><i class="fa fa-times"></i> Blacklisted</a>
+                          <% } %>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="/auth/logout" style="color: red;"><i class="fa fa-sign-out"></i> Sign Out</a>
+                          </li>
+                  <% } else { %>
+                    <a type="button" class="btn btn-secondary" href="/auth/login">Discord Login</a>
+                    <% } %>
+                  </ul>
+                            </nav>
+  </center>
+  <div class="alert alert-info" style="margin: 100px;" role="alert">
+  We are looking for more Developers! Must be / have:<br>
+  × Good & Understandable English<br>
+  × Experience in making websites and discord bots<br>
+  × 15 years old<br>
+  <br><br>
+  If you meet the requirements please contact the owner <b>Mizchiev Dev#3118</b> in our support server
+  </div>
+</head>
+
+<body class="bg-dark text-center text-white">
+
+
+  <style>
+    .navbar {
+      animation: fadeIn 0.7s;
+      background-color: #333;
+    }
+
+    .navbar a {
+      float: left;
+      font-size: 14px;
+      /* color: var(--font-color); */
+      text-align: center;
+      transition: 0.4s;
+      padding: 14px 16px;
+      animation: fadeIn 0.7s;
+      text-decoration:double;
+    }
+
+    :root {
+      --primary-color: black;
+      --secondary-color: grey;
+      --font-color: white;
+      --bg-color: #1a1919;
+      --heading-color: black;
+      --head-color: #1a1919;
+      --button: black;
+      --button-text: white;
+      --cardd-color: #444141;
+      --header-button-hover: white;
+      --header-button-hover-text: black;
+      --hr-color: black;
+      --wave-color: #000000;
+      --scroll-color: black;
+    }
+
+    .theme-red {
+      --primary-color: #1d44b8;
+      --secondary-color: rgb(121, 33, 33);
+      --font-color: #ffffff;
+      --bg-color: #1d44b8;
+      --heading-color: ##4169e1;
+      --head-color: #1d44b8;
+      --button: rgb(0, 0, 0);
+      --button-text: rgb(0, 0, 0);
+      --cardd-color: #1d44b8;
+      --header-button-hover: #000000;
+      --header-button-hover-text: white;
+      --hr-color: rgb(12, 9, 9);
+      --wave-color: #0c255a;
+      --scroll-color: #1a45a1;
+    }
+/* can be used when a website style update happens or themes are readding */
+/* DO NOT REMOVE */
+     .bg-dark {
+    background-color: #181818 !important;
+}
+
+.bg-secondary {
+  background-color: #343a40;
+}
+.card-header {
+    background-color: #343a40 !important;
+}
+.card-body {
+    background-color: #343a40 !important;
+}
+.card-footer {
+  background-color: #343a40 !important;
+}
+.card-title {
+  background-color: #343a40 !important;
+}
+.card-img-top {
+  background-color: #343a40 !important;
+}
+.card {
+    border-color: #2b2b36 !important;
+    background-color: #343a40 !important;
+}
+
+.btn-secondary:hover {
+  background-color: #376d3f;
+}
+
+.btn-secondary {
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    background-color: #377f41 !important;
+}
+.btn-warning:hover {
+  background-color: #bb961b;
+}
+.navbar-light a:hover {
+    color: #007bff !important;
+}
+
+.btn-primary {
+    border-color: #323188;
+    background-color: #313288 !important;
+}
+.btn-info {
+  background-color: #007bff;
+}
+.btn-info:hover {
+  background-color: #0760bf;
+}
+.btn-danger:hover {
+  background-color: #6b2d2d;
+}
+.btn-primary:hover {
+    border-color: #322a7a !important;
+    background-color: #33296d !important;
+}/* */
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .wave {
+      animation: wave 5s linear;
+      animation-iteration-count: infinite;
+      fill: var(--wave-color);
+    }
+
+    #myBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+  
+      font-size: 18px;
+      border: none;
+      outline: none;
+      background-color: rgb(255, 255, 255);
+      color: black;
+      cursor: pointer;
+      transition: 0.4s;
+      padding: 10px;
+      border-radius: 4px;
+      animation: fadeIn 0.4s;
+    }
+
+    #myBtn:hover {
+      background-color: #555;
+      color: var(--button);
+      transition: 0.4s;
+      animation: fadeIn 0.4s;
+    }
+
+    .favicon {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+
+    .card {
+      margin: 0 auto;
+      /* Added */
+      float: none;
+      /* Added */
+      margin-bottom: 10px;
+      /* Added */
+    }
+
+    .cardd.area2717 {
+      height: auto;
+      width: 700px;
+      padding: 10px;
+      padding-top: 10px;
+      border-radius: 10px;
+      background-color: black;
+    }
+
+    .cardd.todo {
+      height: auto;
+      width: 300px;
+      padding: 10px;
+      padding-top: 10px;
+      border-radius: 10px;
+      background-color: black;
+    }
+
+    .cardd.devpanel {
+      height: auto;
+      width: 400px;
+      padding: 10px;
+      padding-top: 10px;
+      border-radius: 10px;
+      background-color: black;
+    }
+    #wave2 {
+      animation-duration: 7s;
+      animation-direction: reverse;
+      opacity: .6;
+    }
+
+    #wave3 {
+      animation-duration: 9s;
+      opacity: .3;
+    }
+
+    /* #wave3 {
+  animation-duration: 4s;
+  opacity: .2;
+} */
+    svg {
+      width: 100%;
+      overflow: visible;
+    }
+
+    footer {
+      text-align: left;
+      padding: 3px;
+    position: relative;
+      /* background-color: #111111; */
+      /* animation: fadeIn 0.7s; */
+    }
+
+    /* Style the header with a grey background and some padding */
+    .header {
+      /* overflow: hidden; */
+      text-align: center;
+      background-color: var(--head-color);
+      padding: 20px 10px;
+      animation: fadeIn 0.4s;
+    }
+
+    /* Style the header links */
+    .header a {
+      float: left;
+      color: var(--font-color);
+      text-align: center;
+      padding: 8px;
+      text-decoration: none;
+      transition: 0.7s;
+      font-size: 18px;
+      line-height: 25px;
+      border-radius: 3px;
+    }
+
+    .header b {
+      float: left;
+      color: var(--font-color);
+      text-align: center;
+      padding: 8px;
+      text-decoration: none;
+      font-size: 18px;
+      line-height: 25px;
+      border-radius: 3px;
+    }
+
+    /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+
+    /* Change the background color on mouse-over */
+    .header a:hover {
+      background-color: var(--header-button-hover);
+      color: var(--header-button-hover-text);
+    }
+
+    /* Style the active/current link*/
+    .header a.active {
+      background-color: dodgerblue;
+      content: "\f023";
+      color: var(--font-color);
+    }
+
+    .header.a:after {
+      content: "\f07a";
+      font-family: FontAwesome;
+      font-size: 14px;
+      padding-left: 5px;
+    }
+
+    .header.a:after {
+      content: "\f023";
+      font-family: FontAwesome;
+      font-size: 14px;
+      padding-left: 4px;
+    }
+
+    .header.b:after {
+      content: "\f07a";
+      font-family: FontAwesome;
+      font-size: 14px;
+      padding-left: 5px;
+    }
+
+    .header.b:after {
+      content: "\f023";
+      font-family: FontAwesome;
+      font-size: 14px;
+      padding-left: 4px;
+    }
+
+    .header a.active:hover {
+      content: "\f023";
+      background-color: rgb(177, 216, 255);
+      color: black;
+    }
+
+    .button {
+      color: var(--button);
+      text-align: center;
+      padding: 10px;
+      text-decoration: none;
+      font-size: 18px;
+      transition: all 0.5s;
+      line-height: 25px;
+      width: 130%;
+      border-radius: 5px;
+      border-style: solid;
+      border-color: rgb(146, 146, 146);
+      background-color: rgb(146, 146, 146);
+      transition-duration: 0.5s;
+      -webkit-transition-duration: 0.5s;
+      -moz-transition-duration: 0.5s;
+    }
+
+    .button.users {
+      width: auto;
+      height: 20px;
+    }
+
+    .button:hover {
+      background-color: rgb(80, 80, 80);
+      color: rgb(156, 156, 156);
+    }
+
+    .button.partners {
+      width: 200px;
+    }
+
+    .button.staffapps {
+      width: 300px;
+    }
+
+    /* Float the link section to the right */
+    .header-right {
+      float: right;
+    }
+
+    .header-left {
+      float: left;
+    }
+
+    /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+    @media screen and (max-width: 500px) {
+      .header a {
+        float: none;
+        display: block;
+        text-align: left;
+      }
+    }
+
+    @font-face {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.woff2) format('woff2');
+    }
+
+    @font-face {
+      font-family: 'Hind';
+      src: url('https://fonts.gstatic.com/s/hind/v8/5aU69_a8oxmIdGl4BA.woff2');
+    }
+
+    p {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      color: var(--font-color)
+    }
+
+    a {
+      color: var(--font-color);
+    }
+
+    a.viewprofile {
+      align-content: flex-start;
+      position: relative;
+    }
+
+    .result {
+      width: 300px;
+      background-color: rgba(37, 35, 48, 0.4);
+      border-radius: 5px;
+      margin: 5px;
+    }
+
+    .left {
+      margin-left: 50px;
+      color: white
+    }
+
+    h1 {
+      color: var(--font-color);
+    }
+
+    h2 {
+      color: var(--font-color)
+    }
+
+    h3 {
+      color: var(--font-color)
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      padding: 10px;
+      flex-wrap: wrap;
+      display: flex;
+      animation: fadeIn 0.7s;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.5s;
+    }
+    table,
+    td,
+    th {
+      border: 1px solid white;
+      text-align: center;
+    }
+    b {
+      color: black;
+    }
+
+    .content {
+      display: none;
+      position: absolute;
+      background-color: #838383;
+      min-width: 160px;
+      transition: 0.4s;
+      border-radius: 5px;
+      width: 0px;
+      height: 200px;
+      animation: fadeOut 1s;
+      padding: 10px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    }
+    h2 {
+      color: var(--font-color);
+    }
+    .form-container {
+      max-width: 300px;
+      padding: 10px;
+      background-color: white;
+    }
+
+    /* Full-width input fields */
+    .form-container input[type=text],
+    .form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    /* When the inputs get focus, do something */
+    .form-container input[type=text]:focus,
+    .form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Set a style for the submit/login button */
+    .form-container .btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    /* Add a red background color to the cancel button */
+    .form-container .cancel {
+      background-color: red;
+    }
+
+    /* Add some hover effects to buttons */
+    .form-container .btn:hover,
+    .open-button:hover {
+      opacity: 1;
+    }
+  </style>
+  <script>
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      document.getElementById("leftt2").style.display = "block";
+      document.getElementById("leftt").style.display = "none";
+      document.getElementById("leftt2").style.animation = "0.4s";
+    } else {
+      document.getElementById("leftt").style.display = "block";
+      document.getElementById("leftt2").style.display = "none";
+      document.getElementById("leftt").style.animation = "0.4s";
+    }
+    var mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 25 || document.documentElement.scrollTop > 25) {
+        mybutton.style.display = "block";
+        mybutton.style.animation = "fadeIn 0.4s";
+      } else {
+        mybutton.style.display = "none";
+        mybutton.style.animation = "fadeIn 0.4s";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+</body>
+
+</html>

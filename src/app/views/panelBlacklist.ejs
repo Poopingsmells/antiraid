@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://i.imgur.com/Mgwfwpj.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png" />
+  <title>AntiRaid - Blacklisting</title>
+</head>
+
+<body>
+  <%- include("partials/header", { bot, user }) %>
+  <center><h1 class="fa fa-times" style="font-size: 40px;"> Blacklist</h1></center>
+  <% if (alert) { %>
+  <div class="alert alert-success" style="width: auto;">
+      <b><i class="fa fa-warning" style="color: black;"></i><%= alert %></b>
+    </div>
+  <% }else if(error){ %>
+    <div class="alert alert-danger" style="width: auto;">
+      <b><i class="fa fa-warning" style="color: black;"></i><%= error %> </b>
+    </div>
+    <% } %>
+  <div class="container"><center><div class="left">
+<form style="margin-top: 1em;" method="POST">
+    <div class="cardd blacklist">
+      <p><b style="font-size: 30px;">Guild Blacklist ID</b></p>
+      <label>
+        <input type="number" name="guildID" required placeholder="i.e 740304844388302848">
+        <hr>
+        <textarea name="reasonGuild" id="guildReason" cols="20" rows="5" placeholder="Reason"></textarea>
+      </label>
+        <hr style="width: auto;">
+   <button type="submit" style="width: 200px; color: red;" class="button guildbl"><i class="fa fa-times"></i> Blacklist Guild</button>    
+</div>
+</form>
+</center>
+
+<form style="margin-top: 1em;" method="POST">
+    <div class="cardd blacklist">
+      <p><b style="font-size: 30px;">User Blacklist ID</b></p>
+      <label>
+        <input type="number" name="userID" required placeholder="i.e 473276250815856650">
+        <hr>
+        <textarea name="reasonUser" id="userReason" cols="20" rows="5" placeholder="Reason"></textarea>
+      </label>
+        <hr style="width: auto;">
+   <button type="submit" style="width: 200px; color: red;" class="button userbl"><i class="fa fa-times"></i> Blacklist User</button>    
+</div>
+</form>
+<form style="margin-top: 1em;" method="POST">
+  <div class="cardd blacklist">
+    <p><b style="font-size: 30px;">Remove User Blacklist ID</b></p>
+    <label>
+      <input type="number" name="RuserID" required placeholder="i.e 473276250815856650">
+      <hr>
+      <textarea name="reasonUser" id="userReason" cols="20" rows="5" placeholder="Reason"></textarea>
+    </label>
+      <hr style="width: auto;">
+ <button type="submit" style="width: 200px; color: green;" class="button userbl"><i class="fa fa-check"></i> Remove Blacklist From User</button>    
+</div>
+</form>
+<form style="margin-top: 1em;" method="POST">
+  <div class="cardd blacklist">
+    <p><b style="font-size: 30px;">Remove Guild Blacklist ID</b></p>
+    <label>
+      <input type="number" name="RguildID" required placeholder="i.e 740304844388302848">
+      <hr>
+      <textarea name="reasonGuild" id="RguildReason" cols="20" rows="5" placeholder="Reason"></textarea>
+    </label>
+      <hr style="width: auto;">
+ <button type="submit" style="width: 200px; color: green;" class="button userbl"><i class="fa fa-check"></i> Remove Blacklist From Guild</button>    
+</div>
+</form>
+</div>
+<center>
+<hr style="color: red; width: 800px;">
+<p><i class="fa fa-sticky-note"></i> Blacklisting Users / Guilds will lead to them not be able to use the bot</p>
+<hr style="width: 800px;">
+<br>
+<a href="/blacklist/view" class="button">See blacklisted guilds or users</a>
+</center>  
+<%- include("partials/footer") %>
+</body>
+
+</html>

@@ -1,0 +1,1069 @@
+<html lang="en">
+  <script>function setTheme(themeName) {
+    localStorage.setItem('theme', themeName);
+    document.documentElement.className = themeName;
+  }
+  
+  // function to toggle between light and dark theme
+  function toggleTheme() {
+    if (localStorage.getItem('theme') === 'theme-red') {
+        setTheme('root');
+    } else {
+        setTheme('theme-red');
+    }
+  }
+  
+  // Immediately invoked function to set the theme on initial load
+  (function () {
+    if (localStorage.getItem('theme') === 'theme-red') {
+        setTheme('theme-red');
+        document.getElementById('slider').checked = true;
+    } else {
+        setTheme('root');
+      document.getElementById('slider').checked = false;
+    }
+  })();</script>  
+
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="6afed643-3d77-491b-879b-ff1098026756";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="og:description" content="Want a good server protection bot?, try out AntiRaid with a dashboard, logging ,custom welcome , leave , auto roles , anti raid and more detailed at site!" />
+    <meta name="og:image" content="https://i.imgur.com/K68mvIF.png" />
+    <meta name="og:title" content="AntiRaid" />
+    <meta name="theme-color" content="#d2efe6"/>
+    <meta name="keywords" content="Discord, Bots, anti, antiraid bot, dank memer, mee6, dyno, lists, discord bots, discord bots list, antiraid by striker, anti">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js'></script>
+    <script src="https://kit.fontawesome.com/089e55c342.js" crossorigin="anonymous"></script>
+    <button style="animation: fadeIn 0.4s;" onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-sort-up"></i></button>
+    <div class="header bg-dark text-center text-white">
+      <div id="leftt2">
+        <div class="dropdown2">
+        <button class="dropbtn2"><i class="fa fa-navicon"></i></button>
+          <div class="dropdown2-content">
+          <div class="container">
+          <a href="/" ><i class="fa fa-home"></i> Home</a>
+          <a href="/commands"><i class="fa fa-bars"></i> Commands</a>
+          <a target="_blank" href="https://discord.gg/yUQcRmVrWA"><i class="fa fa-users"></i> Discord</a>
+          <a href="/dashboard"><i class="fa fa-tachometer"></i> Dashboard</a>
+          <a href="/staff"><i class="fa fa-user-circle-o"></i> Staff Team</a>
+          <a href="/partners"><i class="fa fa-handshake-o"></i> Partners</a>
+          <a href="/news"><i class="fa fa-newspaper-o"></i> News</a>
+          <a href="/faq"><i class="fa fa-question"></i> FaQ</a>
+          <a href="/todo"><i class="fa fa-list"></i> To-Do</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header-left" id="leftt">
+      <a href="/" ><i class="fa fa-home"></i> Home</a>
+      <a href="/commands"><i class="fa fa-bars"></i> Commands</a>
+      <a target="_blank" href="https://discord.gg/yUQcRmVrWA"><i class="fa fa-users"></i> Discord</a>
+      <a href="/dashboard"><i class="fa fa-tachometer"></i> Dashboard</a>
+      <a href="/staff"><i class="fa fa-user-circle-o"></i> Staff Team</a>
+      <a href="/news"><i class="fa fa-newspaper-o"></i> News</a>
+      <a href="/apps"><i class="fa fa-desktop"></i> Apply</a>
+      <% if(user) { %>
+      <% if(bot.config.staff.includes(user.id)){ %>
+        <a href="/panel"><i class="fa fa-code"></i> Panel</a> %>
+        <a href="/blacklist"><i class="fa fa-times"></i> Blacklist</a> %>
+        <a href="/blacklisted"><i class="fa fa-times"></i> Blacklited</a>
+        <% } %>
+      <% } %>
+      </div>
+      <div class="header-right">
+        <% if (user) { %>
+    <div class="dropdown">
+        <% let avatar = "" %>
+        <% avatar = !user.avatar ? "https://maxcdn.icons8.com/Share/icon/Logos/discord_logo1600.png" : `${bot.users.cache.get(user.id).displayAvatarURL({dynamic: true})}` %>
+        <a href="/profile" type="button" class="btn btn-dark">
+        
+        <img src="<%= avatar %>" style="border-radius: 50px;" width="35px" height="35px" >
+        <%= user.username %>
+      </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a href="/profile" class="dropdown-item"><i class="fa fa-user-circle-o"></i> Profile</a>
+        <a href="/api/users" class="dropdown-item"><i class="fa fa-address-book"></i> Users</a>
+        <% if(bot.config.owners.map(x => x.id).includes(user.id)){ %>
+          <a href="/panel" class="dropdown-item"><i class="fa fa-code"></i> Panel</a> %>
+          <a href="/blacklist" class="dropdown-item"><i class="fa fa-times"></i> Blacklist</a> %>
+          <a href="/blacklisted" class="dropdown-item"><i class="fa fa-times"></i> Blacklited</a>
+          <% }else{%>
+             <br>
+             <% } %>
+          <b>___________</b>
+          <a style="color: rgb(151, 26, 26)" href="/logout" class="dropdown-item"><i class="fa fa-sign-out"></i> Sign Out</a>
+        </div>
+    </div> 
+  </div>
+          <% } else { %>
+          <a class="header a" href="/login">Log in with discord</a>
+        <% } %>
+    </div>
+  </div>
+  <center>
+</center>
+</head>
+<body class="bg-dark text-center text-white">
+  
+
+  <style>
+:root {
+    --primary-color: black;
+    --secondary-color: grey;
+    --font-color: white;
+    --bg-color: #1a1919;
+    --heading-color: black;
+    --head-color: #1a1919;
+    --button: black;
+    --button-text: white;
+    --cardd-color: #444141;
+    --header-button-hover: white;
+    --header-button-hover-text: black;
+    --hr-color: black;
+    --wave-color: #000000;
+    --scroll-color: black;
+}
+
+.theme-red {
+  --primary-color: #1d44b8;
+    --secondary-color: rgb(121, 33, 33);
+    --font-color: #ffffff;
+    --bg-color: #1d44b8;
+    --heading-color: ##4169e1;
+    --head-color: #1d44b8;
+    --button: rgb(0, 0, 0);
+    --button-text: rgb(0, 0, 0);
+    --cardd-color: #1d44b8;
+    --header-button-hover: #000000;
+    --header-button-hover-text: white;
+    --hr-color: rgb(12, 9, 9);
+    --wave-color: #0c255a;
+    --scroll-color: #1a45a1;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 20px;
+}
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+home_logo :hover {
+  -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+.home_logo {
+    width: 42px;
+    margin-bottom: -15px;
+    -webkit-transition: -webkit-transform 0.8s ease-in-out;
+    transition: transform 0.8s ease-in-out;
+}
+h4 {
+  color: var(--font-color);
+}
+h6 {
+  color: var(--font-color);
+}
+h5 {
+  color: var(--font-color)
+}
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+}
+hr {
+  color:var(--hr-color);
+  width: auto;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 0px;
+  bottom: 2px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  box-shadow: 0 0px 15px #2020203d;
+  background: steelblue;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+/* img.imgpr {
+  float: left;
+}
+p.infopr {
+  float: right;
+} */
+.leftt3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+input:checked + .slider {
+  background-color: #ffffff;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #111111;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
+  background: black;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+    html {
+  scroll-behavior: smooth;
+}
+.wave {
+    animation: wave 5s linear;
+    animation-iteration-count: infinite;
+    fill: var(--wave-color);
+  }
+    #myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  cursor: pointer;
+  transition: 0.4s;
+  padding: 10px;
+  border-radius: 4px;
+  animation: fadeIn 0.4s;
+}
+
+#myBtn:hover {
+  background-color: #555;
+  color: var(--button);
+  transition: 0.4s;
+  animation: fadeIn 0.4s;
+}
+.navbar {
+  overflow: hidden;
+  animation: fadeIn 0.7s;
+  background-color: #333;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  /* color: var(--font-color); */
+  text-align: center;
+  transition: 0.4s;
+  padding: 14px 16px;
+  animation: fadeIn 0.7s;
+  text-decoration: none;
+}
+.favicon {
+  -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+}
+.cardd.area2717 {
+  height: auto;
+width: 700px;
+padding: 10px;
+padding-top: 10px;
+border-radius: 10px;
+background-color: black;
+}
+.cardd.todo {
+  height: auto;
+width: 300px;
+padding: 10px;
+padding-top: 10px;
+border-radius: 10px;
+background-color: black;
+}
+.cardd.devpanel {
+  height: auto;
+width: 400px;
+padding: 10px;
+padding-top: 10px;
+border-radius: 10px;
+background-color: black;
+}
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  transition: 0.4s;
+  display: block;
+  animation: fadeIn 0.7s;
+  text-align: left;
+}
+.dropdown-content a:hover {
+  transition: 0.4s;
+  animation: fadeIn 0.7s;
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  transition: 0.4s;
+  display: block;
+  animation: fadeIn 1s;
+}
+.dropdown {
+  float: left;
+  overflow: hidden;
+  animation: fadeIn 0.7s;
+}
+#wave2 {
+  animation-duration:7s;
+  animation-direction: reverse;
+  opacity: .6;
+}
+#wave3 {
+  animation-duration: 9s;
+  opacity:.3;
+}
+/* #wave3 {
+  animation-duration: 4s;
+  opacity: .2;
+} */
+svg {
+  width:100%;
+  overflow:visible;
+}
+footer {
+  text-align: left;
+  padding: 3px;
+  /* background-color: #111111; */
+  /* animation: fadeIn 0.7s; */
+}
+
+  /* Style the header with a grey background and some padding */
+.header {
+  overflow: hidden;
+  text-align: center;
+  background-color: var(--head-color);
+  padding: 20px 10px;
+  animation: fadeIn 0.4s;
+}
+
+/* Style the header links */
+.header a {
+  float: left;
+  color: var(--font-color);
+  text-align: center;
+  padding: 8px;
+  text-decoration: none;
+  transition: 0.7s;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 3px;
+}
+.header b {
+  float: left;
+  color: var(--font-color);
+  text-align: center;
+  padding: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 3px;
+}
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+
+/* Change the background color on mouse-over */
+.header a:hover {
+  background-color: var(--header-button-hover);
+  color: var(--header-button-hover-text);
+}
+/* Style the active/current link*/
+.header a.active {
+  background-color: dodgerblue;
+  content: "\f023";
+  color: var(--font-color);
+}
+.header.a:after {
+     content: "\f07a";
+     font-family: FontAwesome;
+     font-size: 14px;
+     padding-left: 5px;
+}
+.header.a:after {
+     content: "\f023";
+     font-family: FontAwesome;
+     font-size: 14px;
+     padding-left: 4px;
+}
+.header.b:after {
+     content: "\f07a";
+     font-family: FontAwesome;
+     font-size: 14px;
+     padding-left: 5px;
+}
+.header.b:after {
+     content: "\f023";
+     font-family: FontAwesome;
+     font-size: 14px;
+     padding-left: 4px;
+}
+.header a.active:hover {
+  content: "\f023";
+  background-color: rgb(177, 216, 255);
+  color: black;
+}
+.button {
+  color: var(--button);
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.5s;
+  line-height: 25px;
+  width: 130%;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: rgb(146, 146, 146);
+  background-color: rgb(146, 146, 146);
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+}
+
+.button.users {
+  width: auto;
+  height: 20px;
+}
+
+.button:hover {
+  background-color: rgb(80, 80, 80);
+  color: rgb(156, 156, 156);
+}
+
+.button.partners {
+  width: 200px;
+}
+.button.staffapps {
+  width: 300px;
+}
+
+/* Float the link section to the right */
+.header-right {
+  float: right;
+}
+.header-left {
+  float: left;
+}
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+  @font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'Hind';
+    src: url('https://fonts.gstatic.com/s/hind/v8/5aU69_a8oxmIdGl4BA.woff2');
+}
+  p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: var(--font-color)
+  }
+  a {
+    color: var(--font-color);
+  }
+  a.viewprofile {
+    align-content: flex-start;
+    position: relative;
+  }
+  .result{
+  width: 300px; 
+  background-color: rgba(37, 35, 48, 0.4);
+  border-radius: 5px;
+  margin: 5px;
+}
+  .left {
+    margin-left: 50px;
+    color: white
+  }
+  h1 {
+    color: var(--font-color);
+  }
+  h2 {
+    color: var(--font-color)
+  }
+  h3 {
+    color: var(--font-color)
+  }
+  .container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 10px;
+  flex-wrap: wrap;
+  display: flex;
+  animation: fadeIn 0.7s;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s;
+  }
+  .cardd {
+background-color: var(--card-color)!important;
+color: white;
+text-align: center;
+animation: fadeIn 0.5s;
+border-radius: 10px;
+margin: 15px;
+box-shadow: 0 4px 60px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgb(0, 0, 0);
+  }
+  .cardd.premium {
+    height: auto;
+width: 400px;
+padding: 10px;
+padding-top: 10px;
+border-radius: 10px;    
+  }
+  .cardd.privacy {
+    height: auto;
+width: 700px;
+padding: 10px;
+padding-top: 10px;
+border-radius: 10px;
+background-color: black;
+  }
+  .cardd.terms {
+    height: auto;
+width: 700px;
+padding: 10px;
+padding-top: 10px;
+border-radius: 10px;
+background-color: black;
+  }
+  .cardd.verificaton {
+height: auto;
+width: 500px;
+padding: 10px;
+padding-top: 10px;
+border-radius: 10px;
+  }
+  .cardd.feautres {
+height: 200px;
+width: 450px;
+padding: 10px;
+padding-top: 10px;
+border-radius: 10px;
+  }
+  .cardd.stats3 {
+height: 150px;
+width: 500px;
+padding: 10px;
+padding-top: 10px;
+border-radius: 50px;
+box-shadow: #000000;
+  }
+.cardd.stats2 {
+height: 130px;
+width: 300px;
+padding: 10px;
+padding-top: 10px;
+border-radius: 5px;
+box-shadow: #000000;
+  }
+  .cardd.blacklisted {
+    height: 300px;
+width: auto;
+padding: 10px;
+padding-top: 10px;
+border-radius: 5px;
+  }
+  .cardd.popout {
+height: auto;
+transition: all 0.5s;
+width: 600px;
+border-radius: 15px;
+animation: fadeIn 0.4s;
+visibility: visible;
+  -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s;
+  }
+  table, td, th {
+    border: 1px solid white;
+    text-align: center;
+  }
+  .cardd.fourofour {
+     height: auto;
+     width: 700px;
+     border-radius: 20px;
+     padding: 15px;
+  }
+  .cardd.reloadcommands {
+    width: 500px;
+   height: auto;
+   border-color: black;
+   border-radius: 20px;
+   padding: 15px
+  }
+.cardd.news {
+  height: auto;
+  width: 500px;
+  padding: 20px;
+  border-radius: 20px;
+ }
+ .cardd.faq {
+  height: auto;
+  width: 800px;
+  padding: 20px;
+  border-radius: 20px;
+ }
+ .cardd.users {
+   height: 300px;
+   width: 400px;
+   padding: 10px;
+  border-radius: 0px;
+ }
+ .cardd.partners {
+   height: auto;
+   width: 500px;
+   padding: 20px;
+   border-radius: 30px;
+   overflow: hidden;
+ }
+ .cardd.staff-news {
+  height: auto;
+   width: 200px;
+   padding: 15px;
+   border-radius: 10px;
+   overflow: hidden;
+ }
+ ::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: 1a1919
+  ; 
+}
+ b {
+   color: black; 
+ }
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--scroll-color); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: whitesmoke;
+  width: 10px
+}
+/*
+.cardd.news h2 {
+  sty
+} */
+  /* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+  .cardd.dashboard {
+height: 350px;
+width: 400px;
+  }
+  .cardd.badges {
+   width: 500px;
+   height: auto;
+   border-color: black;
+   border-radius: 20px;
+   padding: 10px
+  }
+.cardd.commands {
+height: 260px;
+border-radius: 0px;
+width: 220px;
+border-radius: 6px;
+animation: fadeOut 1s;
+height: 50px;
+transition: 0.2s;
+ }
+ .content{
+  display:none;
+  position: absolute;
+  background-color: #838383;
+  min-width: 160px;
+  transition: 0.4s;
+  border-radius: 5px;
+  width: 0px;
+  height: 200px;
+  animation: fadeOut 1s;
+  padding: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+ } 
+.cardd.tags:hover .content{
+display: block;
+width: 350px;
+height: 100px;
+animation: fadeIn 1s;
+transition: 0.4s;
+  }
+  .cardd.tags {
+height: 200px;
+border-radius: 0px;
+width: 200px;
+border-radius: 6px;
+animation: fadeOut 1s;
+height: 40px;
+transition: 0.2s;
+ }
+ .content2{
+  display:none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  transition: 0.4s;
+  border-radius: 5px;
+  width: 0px;
+  height: 200px;
+  animation: fadeOut 1s;
+  padding: 10px;
+  box-shadow: 0px 8px 16px 0px darkslategray;
+  z-index: 1;
+ } 
+.cardd.commands:hover .content{
+display: block;
+width: 320px;
+height: 250px;
+animation: fadeIn 1s;
+transition: 0.4s;
+  }
+ .cardd.bug {
+height: 350px;
+width: 540px;
+animation: fadeIn 0.4s;
+ }
+ .cardd.suggestions {
+height: 350px;
+width: 540px;
+animation: fadeIn 0.4s;
+ }
+ .vl {
+  border-left: 1px solid whitesmoke;
+  height: 280px;
+  padding-left: 20px;
+}
+ .cardd.profile {
+  width: 700px;
+   height: auto;
+   border-color: black;
+   border-width: 10px;
+   padding: 10px
+ }
+ .cardd.dangerzone {
+  width: 700px;
+   height: auto;
+   background-color: red;
+   border-color: black;
+   border-width: 10px;
+   padding: 10px
+ }
+ h2 {
+   color: var(--font-color);
+ }
+ .cardd.form {
+   height: auto;
+   width: 900px;
+   padding: 10px;
+  border-radius: 10px;
+ }
+ .cardd.blacklist {
+   height: auto;
+   width: 300px;
+   padding: 10px;
+  border-radius: 10px;
+ }
+ .cardd.stats {
+height: 365px;
+width: 620px;
+animation: fadeIn 0.4s;
+border-radius: 10px;
+padding: 15px;
+ }
+ .cardd.stats :hover {
+  -webkit-transform: scale(0.8);
+-ms-transform: scale(0.8);
+transform: scale(0.8);
+transition: 1s ease;
+ }
+ .cardd.team {
+height: auto;
+padding: 15px;
+width: 350px;
+animation: fadeIn 0.4s;
+border-radius: 20px;
+ }
+ .cardd.contact {
+height: auto;
+padding: 15px;
+width: 500px;
+animation: fadeOut 0.4s;
+border-radius: 20px;
+}
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+ .select {
+height: 35px;
+width: 800px;
+transition: all 0.5s;
+animation: fadeIn 0.4s;
+border-radius: 10px;
+background-color: rgb(43, 43, 43);
+color: white;
+ }
+ .select:hover {
+height: 35px;
+width: 800px;
+animation: fadeIn 0.4s;
+border-radius: 10px;
+background-color: rgb(218, 216, 216);
+color: rgb(0, 0, 0);
+ }
+ .input{
+ width: 600px;
+ height: 40px;
+ animation: fadeIn 0.7s;
+ transition: all 0.5s;
+ border-color: rgb(136, 136, 136);
+ color: white;
+ background-color: rgb(58, 58, 58);
+ border-radius: 10px;
+ }
+ .input:hover{
+ width: 600px;
+ height: 40px;
+ transition: all 0.5s;
+ border-color: rgb(138, 138, 138);
+ color: rgb(0, 0, 0);
+ background-color: rgb(255, 255, 255);
+ border-radius: 10px;
+ }
+ .input2{
+ width: 600px;
+ height: 40px;
+ transition: 0.3s;
+ animation: fadeIn 0.7s;
+ border-color: rgb(136, 136, 136);
+ color: rgb(150, 150, 150);
+ background-color: rgb(58, 58, 58);
+ }
+ .input2:hover{
+ width: 600px;
+ height: 40px;
+ transition: 0.3s;
+ animation: fadeIn 0.4s;
+ border-color: rgb(255, 255, 255);
+ color: rgb(255, 255, 255);
+ background-color: rgb(58, 58, 58);
+ }
+ .input2.regex{
+ width: 600px;
+ height: 40px;
+ transition: all 0.5s;
+ animation: fadeIn 0.4s;
+ border-color: rgb(136, 136, 136);
+ color: white;
+ background-color: rgb(58, 58, 58);
+ }
+ .vote.close{
+  width:50px;
+  animation: fadeIn 0.4s;
+  color: red; 
+  margin-left: 600px;
+  font-style: Arial;
+ }
+ .dropdown2 {
+  float: left;
+  overflow: hidden;
+  animation: fadeIn 0.7s;
+}
+
+.dropdown2 .dropbtn2 {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  animation: fadeIn 0.7s;
+  margin: 0;
+}
+
+.dropdown2-content {
+  display: none;
+  position: absolute;
+  background-color: #838383;
+  min-width: 160px;
+  transition: 0.4s;
+  width: 250px;
+  height: 300px;
+  animation: fadeIn 0.7s;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown2-content a {
+  float: none;
+  color: var(--font-color);
+  padding: 12px 16px;
+  text-decoration: none;
+  transition: 0.4s;
+  display: block;
+  animation: fadeIn 0.7s;
+  text-align: left;
+}
+
+.dropdown2-content a:hover {
+  transition: 0.4s;
+  animation: fadeIn 0.7s;
+  background-color: #ddd;
+}
+
+.dropdown2:hover .dropdown2-content {
+  transition: 0.4s;
+  display: block;
+  animation: fadeIn 1s;
+}
+.dropdown2 {
+  float: left;
+  overflow: hidden;
+  animation: fadeIn 0.7s;
+}
+
+  </style>
+<script>
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {    
+            document.getElementById("leftt2").style.display = "block";
+            document.getElementById("leftt").style.display = "none";
+            document.getElementById("leftt2").style.animation = "0.4s";
+      }else{
+        document.getElementById("leftt").style.display = "block";
+        document.getElementById("leftt2").style.display = "none";
+        document.getElementById("leftt").style.animation = "0.4s";
+      }
+      var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 25 || document.documentElement.scrollTop > 25) {
+    mybutton.style.display = "block";
+    mybutton.style.animation = "fadeIn 0.4s";
+  } else {
+    mybutton.style.display = "none";
+    mybutton.style.animation = "fadeIn 0.4s";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+
+</body>
+</html>

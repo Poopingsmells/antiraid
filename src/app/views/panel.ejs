@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="https://i.imgur.com/Mgwfwpj.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="../partials/header.ejs">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <title>AntiRaid - Panel</title>
+</head>
+
+<body>
+  <%- include("partials/header", { bot, user, path, }) %>
+    <center>
+      <br>
+      <% if (alert) { %>
+        <div style="background-color: rgb(32, 235, 83);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 4px; padding: 6px">
+          <b><i class="fa fa-warning" style="color: black;"></i>
+            <%= alert %>
+          </b>
+        </div>
+        <% }else if(error){ %>
+          <div
+            style="background-color: rgb(235, 32, 32);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 4px; padding: 6px">
+            <b><i class="fa fa-warning" style="color: black;"></i>
+              <%= error %>
+            </b>
+          </div>
+          <% } %>
+            <br>
+    </center>
+    <center>
+      <br>
+      <h1 style="color:white;"><strong>Welcome <%= user.username %> to the <strong style="color: darkred;">TOP
+              SECRET</strong> panel!</strong></h1>
+      <br>
+      <br>
+      <br>
+      <hr style="width: 800px;">
+      <a type="button" href="/badge-panel" class="btn btn-secondary">Badges Panel</a>
+      <a type="button" href="/premium-panel" class="btn btn-secondary">Premium Panel</a>
+      <a type="button" href="/dev-panel" class="btn btn-secondary">Developer Panel</a>
+      <a type="button" href="/app-panel" class="btn btn-secondary"> Applications Status Panel</a>
+      <br>
+      <hr style="width: 800px;">
+      <div class="cardd reloadcommands">
+        <form style="margin-top: 1em;" method="POST">
+          <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+          <h4 style="color: white;"><i class="fa fa-spinner"></i> <strong>Reload command!</strong></h4>
+          <br>
+          <hr style="width: auto;">
+          <center>
+            <strong>
+              <p>Command Name:</p>
+            </strong>
+            <input class="w3-input w3-border" maxlength="20" type="text" name="commandreload" value=""
+              style="width:300px" placeholder="i.e ping">
+            <hr>
+            <strong>
+              <p> Captcha: </p>
+            </strong>
+            <input class="w3-input w3-border" maxlength="20" name="reloadcap" type="number" value="" style="width:300px"
+              required><br><br>
+          </center>
+          <hr style="width: auto;">
+          <br>
+          <button type="button" class="btn btn-danger" type="submit"><i class="fa fa-spinner"></i> Reload a
+            Command</button>
+          <br>
+          <br>
+          <hr style="margin-left: 250px; margin-right: 250px;">
+        </form>
+      </div>
+      <form style="margin-top: 1em;" method="POST">
+        <hr> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+        <h2><i class="fa fa-wrench"></i> <strong>Bug Reports</strong></h2>
+        <br><br><br>
+        <div class="container">
+          <% if(reportbug.length===0){ %>
+            <b style="font-size: 30px; color:white;"><i class="fa fa-wrench"></i> No bug reports</b><br>
+            <% }else{ %>
+              <% for (i=0; i < reportbug.length; i++) { %>
+                <div class="cardd bug">
+                  <p><strong style="color: rgb(255, 255, 255); font-size: 30px;">New bug report</strong><br>Bug ID: <%=
+                      Math.ceil(Math.random() * 50) + reportbug[i].userID + Math.ceil(Math.random() * 50) %>
+                      <br>_____________<br><code style="font-size: 20px;">Bug:</code><br><strong
+                        style="color: rgb(0, 0, 0);  word-break: break-all;">
+                        <%= reportbug[i].bug %> .
+                      </strong></p>
+                  <button style="width:170px" name="acceptbug" value="<%= reportbug[i].userID %>"
+                    type="submit">Accept</button>
+                </div>
+                <% } %>
+                  <% } %>
+        </div>
+      </form>
+      <hr style="margin-left: 250px; margin-right: 250px;">
+      <br>
+      <h1 style="font-size: 30px; color: white;"><i class="fa fa-code"></i> <strong>Suggestions</strong></h1>
+      <br>
+      <form style="margin-top: 1em;" method="POST">
+        <div class="container">
+          <% if(suggestion.length===0){ %>
+            <b style="font-size: 30px; color:white;"><i class="fa fa-wrench"></i> No new suggestions</b><br>
+            <% }else{ %>
+              <% for (i=0; i < suggestion.length; i++) { %>
+                <div class="cardd bug">
+                  <p><strong style="color: rgb(255, 255, 255); font-size: 30px;">New Suggestion</strong><br>Suggestion
+                    ID: <%= Math.ceil(Math.random() * 50) + suggestion[i].userID + Math.ceil(Math.random() * 50) %>
+                      <br><br><code style="font-size: 20px;">Suggestions:</code><br><strong
+                        style="color: rgb(0, 0, 0);  word-break: break-all;">
+                        <%= suggestion[i].suggestion %>
+                      </strong></p>
+                  <button style="width:170px" name="acceptsuggestion" value="<%= suggestion[i].userID %>"
+                    type="submit">Suggestion Done!</button>
+                </div>
+                <% } %>
+                  <% } %>
+        </div>
+      </form>
+      <br>
+      <hr style="margin-left: 250px; margin-right: 250px;">
+      </div>
+      </div>
+      <hr>
+    </center>
+    <br><br><br><br><br><br><br><br><br><br><br>
+    <%- include("partials/footer") %>
+</body>
+
+</html>

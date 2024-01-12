@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/K68mvIF.png" />
+  <link rel="shortcut icon" href="https://i.imgur.com/K68mvIF.png" style="border-radius: 80px;" type="image/x-icon">
+  <title>AntiRaid - Home</title>
+</head>
+
+<body>
+  <%- include("partials/header", { bot, user, path, }) %>
+    <center>
+      <br>
+      <img src=<%- bot.user.avatarURL() %> style="width: 200px; height: 200px;">
+      <br>
+      <br>
+      <br>
+      <h1><i class="fa fa-smile-o"></i> Welcome to AntiRaid!</h1>
+      <h5><i class="fa fa-vcard"></i> We are the best premium free moderation bot in the history!</h5>
+      <h5><i class="fa fa-tags"></i> Tags</h5>
+      <h6><strong>Moderation, Infractions, Dashboard, Configuration, Role Management, Logging</strong> </h6>
+    </center>
+    <br>
+    <br>
+    <center>
+      <a style="width:350px;" style="margin-left: 50px" class="button" type="button" target="_blank"
+        href="https://discord.com/oauth2/authorize?client_id=<%= bot.user.id %>&permissions=268438576&scope=bot"><i
+          class="fa fa-tachometer"></i> Get Started</a>
+      <br>
+      <br>
+      <a style="width:200px;" style="margin-right: 50px" class="button" type="button" target="_blank"
+        href="https://discord.gg/6MRKqAvVSE"><i class="fa fa-users"></i> Support Server</a>
+      <br>
+      <br>
+      <script>
+        // Set the date we're counting down to
+        function openVote() {
+          document.getElementById("myvote").style.display = "block";
+        }
+        function closeVote() {
+          document.getElementById("myvote").style = "display: none;";
+        }
+      </script>
+    </center>
+    <br>
+    <br>
+    <div class="left">
+      <p>
+        <center><strong style="font-size: 40px; margin-right: 40px;"><i class="fa fa-newspaper-o"></i> Features</strong>
+        </center>
+      </p>
+    </div>
+    <div class="card-columns" style="column-count: 4;">
+      <% bot.config.features.map(x => { %>
+    <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+      <div class="card-header"><i class="fa fa-<%- x.emoji %>"></i> <%- x.title %></div>
+      <div class="card-body">
+        <p class="card-text"><%- x.description %></p>
+      </div>
+    </div>
+    <% }); %>
+  </div>
+    <small style="color: red; text-align: center;">Inviting bot for jokes , troll , abuse us will lead bot to leave your
+      server + get blacklisted</small>
+    <center>
+      <hr style="margin-left: 300px; margin-right: 300px;">
+      <p style="font-size: 30px;"><i class="fa fa-server"></i> Bot Statistics</p>
+      <div class="card-columns" style="column-count: 3; column-width: auto;">
+        <div class="card text-white bg-secondary mb-3">
+          <p style="font-size: 30px;">
+         
+            <div class="card-text"><i class="fa fa-tasks"></i>
+              <%= stats.commands_used_total.toLocaleString() %>
+            </div>
+            <div class="card-header">
+              Total times bot executed commands
+            </div>
+        </div>
+        <div class="card text-white bg-secondary mb-3">
+        <div class="card-text"><i class="fa fa-server"></i>
+          <%= bot.guilds.cache.size %>
+        </div>
+        <div class="card-header">
+          Servers bot is watching
+        </div>
+        </div>
+        <div class="card text-white bg-secondary mb-3">
+        <div class="card-text"><i class="fa fa-clock-o"></i>
+          <%= ms(bot.uptime, {long: true}) %>
+        </div>
+        <div class="card-header">
+          Uptime
+        </div>
+        </div>
+        <div class="card text-white bg-secondary mb-3">
+        <div class="card-text"><i class="fa fa-code-fork"></i>
+          <%= bot.config.version %>
+        </div>
+        <div class="card-header">
+          Version
+        </div>
+        </div>
+        <div class="card text-white bg-secondary mb-3">
+          <div class="card-text"><i class="fa fa-users"></i>
+            <%= users %>
+          </div>
+          <div class="card-header">
+            Users AntiRaid is caching
+          </div>
+          </div>
+      </div>
+      </a>
+      <hr>
+      <br>
+      <a style="width:200px;" class="btn btn-danger" type="button" target="_blank" href="/bug"><i class="fa fa-bug"></i> Report
+        Bug</a>
+      <a style="width:200px;" class="btn btn-success" type="button" target="_blank" href="/suggest"><i class="fa fa-code"></i>
+        Suggest</a>
+        <a style="width:200px;" class="btn btn-primary" type="button" target="_blank" href="/feedback"><i class="fa fa-heart"></i>
+          Feedback</a>
+    </center>
+    <br>
+    <%- include("partials/footer") %>
+</body>
+
+</html>

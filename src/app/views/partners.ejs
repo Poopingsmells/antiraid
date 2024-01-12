@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/835457965485850625/882640681137500221/AR_LOGO_NOBG.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png" />
+  <title>AntiRaid - Partners</title>
+</head>
+<body>
+  <%- include("partials/header", { bot, user,}) %>
+  <center><h1><i class="fa fa-handshake-o"></i><strong> Partners</strong></h1></center>
+  <div class="card-columns" style="column-count: 3; margin: 100px;">
+    <% bot.config.partners.map(x => { %>
+      <div class="card bg-secondary text-white mb-3">
+      <% let imgs = "" %>
+      <% if(!bot.guilds.cache.get(x.guildID)) { %>
+      <% imgs = x.icon %>
+      <% } else { %>
+      <% imgs = bot.guilds.cache.get(x.guildID).iconURL({dynamic: true}) %>
+      <% } %>
+        <% let avatar = ""; %>
+        <% if(!x.botID) { %>
+            <img src="<%- imgs %>" class="card-img-top" style="width: 150px; border-radius: 50%;" alt="<%= x.name %>">
+          <h2 class="card-title" style="height: auto; width: auto;"> <strong> <%- x.name %></strong></h2>  
+       <% } else { %>
+        <h2 style="height: auto; width: auto;"><img src="<%- x.icon %>" style="width: 150px; border-radius: 100%;"> <strong> <%- x.name %></strong></h2>
+      <% } %>
+        <% let own = x.owner.map(q => bot.users.cache.get(q)?.username || bot.users.fetch(q).username).join(", ") %>
+        <div class="card-header">
+<h4>Owner(s): <strong> <%- own %></strong></h4>
+        </div>
+        <div class="card-body">
+            <h5 style="height: auto; width: auto; font-size: 17px;" class="card-text"><%- x.description %></h5>
+        </div>
+        <div class="card-footer">
+            <% if(x.Invite) { %>
+                <a href="<%- x.Invite %>" type="button" class="btn btn-info"><i class="fa fa-plus"></i> Invite</a> 
+       <% } %>
+       <% if(x.SServer) { %>
+        <a href="<%- x.SServer%>" type="button" class="btn btn-info"><i class="fa fa-vcard"></i> Discord</a> 
+        <% } %>
+        <% if(x.Website) {%>
+        <a href="<%- x.Website %>" type="button" class="btn btn-info"><i class="fa fa-globe"></i> Website</a> 
+        <% } %>
+       <% if(x.Github) {%>
+        <a href="<%- x.Github %>" type="button" class="btn btn-info"><i class="fa fa-github"></i> Github</a> 
+        <% } %> 
+            <% if(x.twitter) {%>
+        <a href="<%- x.twitter %>" type="button" class="btn btn-info"><i class="fa fa-twitter"></i> Twitter</a> 
+        <% } %> 
+        </div>
+      </div>
+    <% }) %>
+            </div>
+            <center>
+    <hr style="width: 800px;">
+    <h2><i class="fa fa-question"></i> Wonder How to get Partnered with AntiRaid?</h2>
+    <p>A: Join Our HQ Discord Server and select partnership requirements channel! <br> If u meet them You can Dm <strong>open a ticket in our discord server!</strong></p>
+  </center>
+    <%- include("partials/footer") %>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png"/>
+  <link rel="shortcut icon" href="https://i.imgur.com/Mgwfwpj.png" style="border-radius: 80px;" type="image/x-icon">
+<title>AntiRaid - <%= guild.name %></title>
+</head>
+<body>
+<%- include("partials/header", { bot, user }) %>
+<center>
+  <br>
+  <% if (alert) { %>
+    <div class="alert alert-success" style="width: auto;">
+      <b><i class="fa fa-warning" style="color: black;"></i><%= alert %></b>
+    </div>
+  <% }else if(error){ %>
+    <div class="alert alert-danger">
+      <b><i class="fa fa-warning" style="color: black;"></i><%= error %> </b>
+    </div>
+    <% } %>
+  </center>
+<br>
+<br>
+<form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+  <p style="font-size: 50px;"><strong>Change maximum amount of warns for kick</strong></p>
+  <p><code>Currently maximum amount od warns for kick is <strong style="color: rgb(255, 0, 0);"><%= settings.warnsForKick %></strong></code></p>
+  <p><code>Maximum warns for kick is <strong style="color: rgb(255, 0, 0);"> 99 </strong></code></p>
+  <input class="input" maxlength="2" type="text" name="kickwarns"  value="<%= settings.warnsForKick %>" placeholder="Type your new amount..."><br><br>
+  <p style="font-size: 50px;"><strong>Change maximum amount of warns for mute</strong></p>
+  <p><code>Currently maximum amount of warns for mute is <strong style="color: rgb(255, 0, 0);"><%= settings.warnsForMute %></strong></code></p>
+  <p><code>Maximum warns for mute is <strong style="color: rgb(255, 0, 0);"> 99 </strong></code></p>
+  <input class="input" maxlength="2" type="text" name="mutewarns"  value="<%= settings.warnsForMute %>" placeholder="Type your new amount..."><br><br>
+  <p style="font-size: 50px;"><strong>Change maximum amount of warns for ban</strong></p>
+  <p><code>Currently maximum amount of warns for ban is <strong style="color: rgb(255, 0, 0);"><%= settings.warnsForBan %></strong></code></p>
+  <p><code>Maximum warns for ban is <strong style="color: rgb(255, 0, 0);"> 99 </strong></code></p>
+  <input class="input" maxlength="2" type="text" name="banwarns"  value="<%= settings.warnsForBan %>" placeholder="Type your new amount..."><br><br>
+  <p style="font-size: 50px;"><strong>Change bot nickanme</strong></p>
+  <input class="input" maxlength="25" type="text" name="nickname"  value="<%= guild.me.nickname || bot.user.username %>" placeholder="i.e Protection bot"><br><br>
+  <button style="width:170px" class="btn btn-success" type="button submit">Update</button>
+  <a class="btn btn-warning" type="button" style="width: auto;"  href="/servers/<%= guild.id %>">Back to dashboard</a>
+</center>
+</form>
+<br><br><br><br><br><br><br><br><br><br><br>
+<%- include("partials/footer") %>
+</body>
+</html>

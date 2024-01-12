@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="https://i.imgur.com/K68mvIF.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="../partials/header.ejs">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/K68mvIF.png"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <title>AntiRaid - Panel</title>
+</head>
+<body>
+<%- include("partials/header", { bot, user, path, }) %>
+<center>
+  <br>
+  <% if (alert) { %>
+    <div style="background-color: rgb(32, 235, 83);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 4px; padding: 6px">
+      <b><i class="fa fa-warning" style="color: black;"></i><%= alert %></b>
+    </div>
+  <% }else if(error){ %>
+    <div style="background-color: rgb(109, 10, 7);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 4px; padding: 6px">
+      <b><i class="fa fa-warning" style="color: black;"></i><%= error %> </b>
+    </div>
+    <% } %>
+    <br>
+  </center>
+<center>
+<br>
+<h1 style="color:white;"><strong>Welcome <%= user.username %> to the <strong style="color: darkred;">TOP SECRET BADGES</strong> panel!</strong></h1>
+<br>
+<br>
+<br>
+<hr style="width: 800px;">
+<a href="/panel" class="button">Return to Panel</a>
+<a href="/premium-panel" class="button">Premium Panel</a>
+<a href="/app-panel" class="button"> Applications Status Panel</a>
+<br>
+<hr style="width: 800px;">
+<h2><i class="fa fa-star"></i> <strong>Badges</strong></h2>
+<div class="container"><center><div class="left">
+<div class="cardd badges">
+<form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+  <!-- <h1 style="font-size: 50px; color: red;">Add Badges</h1> -->
+  <h4 style="color: white;"><i class="fa fa-star"></i><strong> Add Badges to users!</strong></h4>
+  <br>
+  <input maxlength="18" type="number" name="id" value="" required=true style="width:auto" placeholder="i.e 473276250815856650"><br><br>
+  <br>
+  <select name="badges1" style="width: 300px;" required= true>
+    <option value="">Select Badge</option>
+    <option value="Developer">Developer</option>
+    <option value="Partner">Partner</option>
+    <option value="Staff">Staff Member</option>
+    <option value="Blacklisted">Blacklisted</option>
+  </select>
+  <hr>
+  <center>
+  <strong><p> Captcha: </p> </strong>
+<input class="w3-input w3-border" maxlength="20" name="reloadcap1" type="number" value="" style="width: auto" required><br><br>
+</center>
+<hr>  
+<br>
+  <br>
+  <button style="width:200px; color: green;" name="addbadge" class="button" type="submit"><i class="fa fa-star"></i> Add Badge</button>
+  <br>
+  <br>
+  <hr style="margin-left: 250px; margin-right: 250px;">
+  <br>
+  <br>
+  </form>
+</div>
+</center>
+<div class="cardd badges">
+  <form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+    <!-- <h1 style="font-size: 50px; color: red;">Add Badges</h1> -->
+    <h4 style="color: white;"><i class="fa fa-star"></i><strong> Remove Badges from users!</strong></h4>
+    <br>
+    <input maxlength="18" type="number" name="rid" value="" required=true style="width:auto" placeholder="i.e 473276250815856650"><br><br>
+    <br>
+    <select name="badges2" style="width: 300px;" required= true>
+      <option value="">Select Badge</option>
+      <option value="Developer">Developer</option>
+      <option value="Partner">Partner</option>
+      <option value="Staff">Staff Member</option>
+      <option value="Blacklisted">Blacklisted</option>
+    </select>
+    <hr>
+    <center>
+    <strong><p> Captcha: </p> </strong>
+<input class="w3-input w3-border" maxlength="20" name="reloadcap2" type="number" value="" style="width:auto" required><br><br>
+</center>
+<hr>    
+<br>
+    <br>
+    <button style="width:200px; color: darkred;"  name="rembadge" class="button" type="submit"><i class="fa fa-times"></i> Remove Badge</button>
+    <br>
+    <br>
+    <hr style="margin-left: 250px; margin-right: 250px;">
+    <br>
+    <br>
+    </form>
+    </div>
+    <hr>
+  </div>
+  </div></div>
+</center>
+<%- include("partials/footer") %>
+</body>
+</html>

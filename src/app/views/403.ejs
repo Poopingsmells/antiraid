@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://i.imgur.com/K68mvIF.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/K68mvIF.png" />
+  <title>AntiRaid - 403 Error</title>
+</head>
+
+<body>
+  <%- include("partials/header", { bot, user }) %>
+  <center>
+    <h1 style="color: darkred; font-size: 50px;"><i class="fa fa-warning"></i> Error 403</h1>
+  </center>
+  <br><br>
+  <center>
+    <h2 style="color: darkred; font-size: 40px;"><i class="fa fa-times"></i> Forbidden</h2>
+    <h3 style="color: orange; font-size: 40px;">You are not authorized to view this page</h3>
+  </center>
+  <br><br>
+  <center>
+    <h5 style="color: darkgrey;">Thinking this is a bug? <br><br><a type="button" class="btn btn-primary" href="/bug">Report a Bug</a></h5>
+  </center>
+  <br><br><br>
+  <%- include("partials/footer") %>
+</body>
+
+</html>

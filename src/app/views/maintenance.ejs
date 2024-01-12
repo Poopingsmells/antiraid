@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://i.imgur.com/K68mvIF.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/K68mvIF.png" />
+  <title>AntiRaid - 404 Error</title>
+</head>
+
+<body>
+  <%- include("partials/header", { bot, user }) %>
+<center>
+    <div class="alert alert-warning" style="padding: 10px; margin: 50px; width: 400px;">
+        <b><i class="fa fa-cogs"></i> We are currently doing a maintenance!</b><br>
+        <small><code> You will have full access to the website when we finish our maintenance</code></small>
+    </div>
+    <p>While you are waiting why not visit some of our social media profiles!</p>
+    <div class="card bg-secondary text-white mb-3" style="margin: 50px; width: 400px;">
+        <center>
+            <br><br>
+            <h4>Our Social Media Profiles</h4>
+            <br><br><br>
+            <a type="button" class="btn btn-primary" style="width: 200px;" href="/socials/github">Github Team</a><br>
+            <a type="button" class="btn btn-primary" style="width: 200px;" href="/socials/twitter">Twitter</a><br>
+            <a type="button" class="btn btn-primary" style="width: 200px;" href="/socials/discord_server">Discord Server</a><br>
+            <br><br><br><br>
+        </center>
+    </div>
+</center>
+  <br><br><br>
+  <%- include("partials/footer") %>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="../partials/header.ejs">
+    <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png" />
+    <link rel="shortcut icon" href="https://i.imgur.com/Mgwfwpj.png" style="border-radius: 80px;" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>AntiRaid Commands</title>
+</head>
+
+<body>
+    <%- include("partials/header", { bot, user }) %>
+        <center>
+            <h4><strong>Total bot commands: <%= bot.commands.size %></strong></h4>
+        </center>
+        <center>
+            <div class="card-columns" style="column-count: 7; margin: 50px;">
+                <% bot.commands.map(cmd=> { %>
+                    <div class="card text-center bg-secondary">
+                        <div class="card-header">
+                            <h6>
+                                <%= cmd.data.name %>
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <h6>
+                                <%= cmd.data.description %>
+                            </h6>
+                        </div>
+                    </div>
+                    <% }).reverse().sort() %>
+                        <br>
+            </div>
+        </center>
+        </center>
+        <%- include("partials/footer") %>
+</body>
+
+</html>

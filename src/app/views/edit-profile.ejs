@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png"/>
+  <link rel="shortcut icon" href="https://i.imgur.com/Mgwfwpj.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>AntiRaid - Edit Profile</title>
+</head>
+<body>
+<%- include("partials/header", { bot, user }) %>
+<center>
+  <br>
+  <% if (alert) { %>
+  <div class="alert alert-success" style="width: 400px;">
+      <b><i class="fa fa-warning" style="color: black;"></i> <%= alert %></b>
+    </div>
+  <% }else if(error){ %>
+    <div class="alert alert-danger" style="width: 700px;">
+      <b><i class="fa fa-warning" style="color: black;"></i> <%= error %> </b>
+    </div>
+    <% } %>
+    <br>
+</center>
+<center><h1><i class="fa fa-cog"></i> Edit profile</h1></center>
+<div class="card-columns" style="column-count: 2;">
+    <div class="card bg-dark text-white" style="margin: 50px; width: 600px;">
+      <form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+        <div class="card-header">
+          <center><h3>Set Biography</h3></center>
+        </div>
+        <div class="card-body">    
+          <center><input class="form-control input" style="width: 500px;" type="text" name="bio" placeholder="Wanda SIMp"><br><br></center>
+          <center><button style="width:170px" class="btn btn-success" type="button submit">Submit</button></center>
+        </div>
+        <br><br>
+      </form>
+    </div>
+    
+    <div class="card bg-dark text-white" style="margin: 50px; width: 600px;">
+      <form style="margin-top: 1em;" method="post">
+        <div class="card-header">
+          <h2>Delete All Your Data</h2>
+        </div>
+        <div class="card-body">
+          Write <code>i confirm</code> to confirm you want to delete all your data.
+        <br><br>
+        <center><input class="form-control input" style="width: 500px;" type="text" name="confirm" placeholder="i confirm"><br><br></center>
+        <center><button style="width:170px" class="btn btn-danger" type="button submit">Delete All Data!</button></center>
+      </div>
+    </form>
+  </div>
+</div>
+<%- include("partials/footer") %>
+</body>
+</html>

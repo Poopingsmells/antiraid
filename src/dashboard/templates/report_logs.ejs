@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/K68mvIF.png"/>
+  <link rel="shortcut icon" href="https://i.imgur.com/K68mvIF.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>AntiRaid - Suggest</title>
+</head>
+<body>
+<%- include("partials/header", { bot, user, path, }) %>
+<center>
+  <br>
+  <% if (alert) { %>
+    <div style="background-color: rgb(32, 235, 83);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 4px; padding: 6px">
+      <b><i class="fa fa-warning" style="color: black;"></i><%= alert %></b>
+    </div>
+  <% }else if(error){ %>
+    <div style="background-color: rgb(235, 32, 32);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 4px; padding: 6px">
+      <b><i class="fa fa-warning" style="color: black;"></i><%= error %> </b>
+    </div>
+    <% } %>
+    <br>
+  </center>
+  <form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+    <h1><strong>Set report logs for server!</strong></h1>
+    <% let thechannelaudit = settings.report %>
+    <% if(thechannelaudit == "String"){ %> 
+      <%  thechannelaudit = "None" %> 
+      <% }else{ %>
+          <% if(!guild.channels.cache.get(settings.audit)){ %>
+              <% thechannelaudit = "None" %>
+              <% }else{ %>
+                  <% thechannelaudit = guild.channels.cache.get(settings.audit).name %>
+              <% } %>
+          <% } %>
+    <h3>Currently report logs channel: <%= thechannelaudit %></h3>
+  
+    <select class="select" name="auditchannel">
+      <option value="<%= settings.report %>"><%= thechannelaudit %></option>
+      <% if(thechannelaudit !== "None"){ %>
+      <option value="None">None</option>
+      <% } %> 
+     <% guild.channels.cache.filter(c => c.permissionsFor(guild.me).has("VIEW_CHANNEL") && c.type == "text").sort((b, a) => b.position - a.position).map(channel => { %>
+      <% if(channel.permissionsFor(guild.me).has("SEND_MESSAGES")){ %>
+        <% if(channel.permissionsFor(guild.me).has("EMBED_LINKS")){ %>
+      <option value="<%= channel.id %>"><%= channel.name %></option>
+      <% } %>
+      <% } %>
+      <% }) %>
+    </select>
+    <br>
+    <br>
+  <button style="width:170px;" class="button" type="submit"><i class="fa fa-check"></i> Set</button>
+          </form>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<%- include("partials/footer") %>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://i.imgur.com/K68mvIF.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/K68mvIF.png" />
+  <title>AntiRaid - Applications</title>
+</head>
+
+<body>
+  <%- include("partials/header", { bot, user, path, }) %>
+  <center>
+  <h1 class="fa fa-list" style="font-size: 40px;"> To-DO List</h1>
+  <% if(todo.length) { %>
+  <div class="container">
+    <% for (let i = 0; i < todo.length; i++) { %> 
+  <div class="cardd todo">
+    <h5><i class="fa fa-id"></i> ID: <strong><%- todo[i].ID %></strong></h5>
+    <hr>
+        <p>Name: <strong style="color: darkblue;"><%- todo[i].name %></strong></p>
+<hr>
+        <p>Expected date of release: <strong style="color: darkred;"><%- todo[i].date || "Soon..." %></strong></p>
+    <hr>
+    <p>Added By: <strong style="color: green;"><%- bot.users.cache.get(todo[i].addedBy).tag %></strong></p>
+      </div>
+    <% } %>
+  </div>
+  <% } else { %>
+    <h1><i class="fa fa-times"></i> There is nothing in the To-Do List</h1>
+    <% } %>
+</center>
+  <%- include("partials/footer") %>
+</body>
+
+</html>

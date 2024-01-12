@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://i.imgur.com/a/THYQkEE" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png" />
+  <title>AntiRaid - Applications</title>
+</head>
+
+<body>
+  <%- include("partials/header", { bot, user }) %>
+  <center>
+    <br>
+    <% if (alert) { %>
+    <div class="alert alert-success" style="width: auto; margin: 50px;">
+        <b><i class="fa fa-warning" style="color: black;"></i><%= alert %></b>
+      </div>
+    <% }else if(error){ %>
+      <div class="alert alert-danger" style="width: 700px;">
+        <b><i class="fa fa-warning" style="color: black;"></i><%= error %> </b>
+      </div>
+      <% } %>
+      <br>
+    </center>
+  <center>
+    
+  <h1 class="fa fa-eercast" style="font-size: 40px;"> Applications</h1>
+  <style>
+  </style>
+    <form style="margin-top: 1em;" method="POST">
+    <div class="card bg-secondary text-white mb-5" style="margin: 100px; width: 700px;"><br>
+        <h3><i class="fa fa-tools"></i> Staff Applications</h3><br><br>
+        <p>Your User ID</p>
+        <input style="width: auto; margin: auto;" type="text" name="userid" class="form-control" id="disabledInput" placeholder="<%- user.id %>" readonly><br>
+        <p>Your Username & Tag</p>
+        <input style="width: auto; margin: auto;" type="text" name="usertag" id="disabledInput" class="form-control" placeholder="<%- user.username %>#<%- user.discriminator %>" readonly><br>
+        <p>Explain why we should choose you...</p>
+   <textarea style="width: auto; margin: auto;" class="form-control" name="explain" id="application" cols="40" rows="5" required placeholder="I have experience in..."></textarea><br>
+   <hr style="width: auto;">
+   <p>Please provide some information about you...</p>
+   <textarea style="width: auto; margin: auto;" class="form-control" name="info" id="application" cols="40" rows="5" required placeholder="I am Emil and im 16, i love coding"></textarea><br>
+   <hr style="width: auto;">
+   <p>Do u have any projects?</p>
+   <textarea style="width: auto; margin: auto;" class="form-control" name="projects" id="projects1" cols="50" rows="5" required placeholder="AntiRaid Discord Bot with dashboard: antiraid.xyz"></textarea><br>
+<hr style="width: auto;">
+   <br><br>
+   <button type="button submit" class="btn btn-success" style="width: auto; margin: auto;"><i class="fa fa-check"></i> Submit Application</button><br>
+   <a type="button" class="btn btn-warning" style="width: auto; margin: auto;" href="/apply"> Return to Applications List page</a><br><br><br>  
+</div>
+</form>
+</center>
+  <%- include("partials/footer") %>
+</body>
+
+</html>

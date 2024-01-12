@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://i.imgur.com/a/THYQkEE" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Mgwfwpj.png" />
+  <title>AntiRaid - Applications</title>
+</head>
+
+<body>
+  <%- include("partials/header", { bot, user, path, }) %>
+  <center>
+  <h1 class="fa fa-eercast" style="font-size: 40px;"> Applications</h1>
+  <% if (alert) { %>
+  <div class="alert alert-success" style="width: auto;">
+      <b><i class="fa fa-warning" style="color: black;"></i><%= alert %></b>
+    </div>
+  <% }else if(error){ %>
+    <div class="alert alert-danger" style="width: auto;">
+      <b><i class="fa fa-warning" style="color: black;"></i><%= error %> </b>
+    </div>
+    <% } %>
+<% if(apps.status === "open") { %>
+    <form style="margin-top: 1em;" method="POST">
+    <div class="cardd form">
+      <p><b style="font-size: 30px;">Choose what role you are applying for</b></p>
+      <label>
+        <input type="radio" name="role" value="Moderator" required> Moderator
+      </label>
+      <br>
+      <label>
+        <input type="radio" name="role" value="Administrator" required> Administrator
+      </label>
+      <br>
+      <label>
+        <input type="radio" name="role" value="Support" required> Support
+      </label>
+      <br>
+        <hr style="width: auto;">
+        <p><b style="font-size: 30px;">Explain why we should choose you...</b></p>
+   <textarea name="application" id="application" cols="40" rows="5" required placeholder="I have experience in..."></textarea>
+   <hr style="width: auto;">
+   <p><b style="font-size: 30px;">Please provide some information about you...</b></p>
+   <textarea name="application" id="application" cols="40" rows="5" required placeholder="I am Emil and im 16, i love coding"></textarea>
+   <hr style="width: auto;">
+   <p><b style="font-size: 30px;">Do u have any projects?</b></p>
+   <textarea name="projects" id="projects1" cols="50" rows="5" required placeholder="AntiRaid Discord Bot with dashboard: antiraid.xyz"></textarea>
+<hr style="width: auto;">
+   <br><br>
+   <button type="submit" style="width: 200px; color: green;" class="button staffapps"><i class="fa fa-check"></i> Submit Application</button>    
+</div>
+</form>
+<% } else { %>
+  <div class="cardd fourofour">
+    <h2><i class="fa fa-times"></i> Staff Applications are CLOSED!</h2><br>
+    <h3>Keep an eye on our <a href="/discord" target="_blank"> Discord Server</a> When they open again!</h3>
+  </div>
+  <% } %>
+</center>
+  <%- include("partials/footer") %>
+</body>
+
+</html>

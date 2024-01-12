@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://i.imgur.com/K68mvIF.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="https://i.imgur.com/K68mvIF.png" />
+  <title>AntiRaid - Users</title>
+</head>
+
+<body>
+  <%- include("partials/header", { bot, user, path, }) %>
+  <center>
+    <h1><i class="fa fa-address-book"></i> AntiRaid Registered Users</h1>
+  </center>
+  <center>Currently Registered: <%= users.length %></center>
+  <div class="container">
+    <% users.sort().map(x => { %>
+    <div class="cardd users">
+      <% let av = ""; %>
+      <% if(bot.users.cache.get(x.userID)) { %>
+      <% av = `https://cdn.discordapp.com/avatars/${x.userID}/${bot.users.cache.get(x.userID).avatar}.webp`; %>
+      <% } else { %>
+      <% av = `https://discordapp.com/assets/322c936a8c8be1b803cd94861bdfa868.png`; %>
+      <% } %>
+      <% let username = ""; %>
+      <% if(bot.users.cache.get(x.userID)) { %>
+        <%- username = bot.users.cache.get(x.userID).tag; %>
+        <% } else { %>
+           <%- username = "Error Occurred" %>
+          <% } %>
+      <img style="border-radius: 50%; display: flex; float: left; align-content: center;" width="100px" height="100px" src="<%= av %>" alt=" Profile Picture ">
+      <p style="font-size: 20px; display: flex; float: right; align-content: center;" class="infopr"> <%= username %> </p>
+      <hr>
+      <br>
+      <a href="https://discord.com/users/<%= x.userID %>" class="button users"><i class="fa fa-vcardd"></i> Discord</a>
+      <a href="/user/<%= x.userID %>" class="button users"><i class="fa fa-eye"></i> View</a>
+      <br>
+    </div>
+    <% }) %>
+  </div>
+  <%- include("partials/footer") %>
+</body>
+
+</html>
