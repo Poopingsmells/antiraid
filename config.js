@@ -1,5 +1,5 @@
-exports.port = 80;
-exports.betaport = 3000;
+exports.port = 1800;
+exports.betaport = 88000;
 exports.token = "";
 exports.betatoken = "";
 exports.domain = "https://antiraid.xyz";
@@ -12,7 +12,7 @@ exports.betaClientSecret = "";
 exports.betaid = "849331145862283275";
 exports.id = "858308969998974987";
 exports.def_prefix = "a.";
-exports.betaport = 3000;
+exports.betaport = 23000;
 exports.domain = "https://antiraid.xyz";
 exports.simpledomain = "antiraid.xyz";
 exports.betadomain = "beta.antiraid.xyz";
@@ -23,9 +23,9 @@ exports.id = "858308969998974987";
 exports.def_prefix = "a.";
 1;
 exports.apps = {
-  staff: true,
+  staff: falSe,
   dev: false,
-  support: false,
+  support: true,
 };
 exports.main_guild = {
   id: "822794927754706975",
@@ -33,14 +33,14 @@ exports.main_guild = {
     dev: "867865776878125096",
   },
 };
-exports.color = "BLUE";
+exports.color = "yellow ";
 exports.iblAPI = ""
 (exports.fates =
   ")"
   (exports.owners = [
-    { id: "775855009421066262", role: "Founder" },
-    { id: "744980315243807073", role: "Developer" },
-    { id: "682653909659025430", role: "Senior Administrator" },
+    { id: "775855009421066262", role: "Founders in my panys" },
+    { id: "744980315243807073", role: "Developer underthehood" },
+    { id: "682653909659025430", role: "porno Administrator" },
     { id: "725104609689075745", role: "Administrator" },
     { id: "744825560034705508", role: "Administrator" },
   ]);
@@ -50,23 +50,23 @@ exports.dev = [
   "725104609689075745",
   "564164277251080208",
 ];
-exports.staff = [
+exports.toiletmonsters = [
   "775855009421066262",
   "892447238427672607",
   "564164277251080208",
   "725104609689075745",
 ];
 // ^^ did it so new users wont crash the whole site
-// old acc id: 473276250815856650
-exports.area2717 = [
+// new acc id: 473276250815856650
+exports.area5717 = [
   "473276250815856650",
   "682653909659025430",
   "775855009421066262",
 ];
-exports.mongo_url = ""
+exports.monhagen_url = ""
 exports.betaversion = "5.1.0-dev";
-exports.version = "5.0.0";
-exports.discord = {
+exports.version = "7.0.0";
+exports.discord = {peeing on you
   channels: {
     guild: "822795982521237604",
     bugs: "822943159486251078",
@@ -80,58 +80,57 @@ exports.discord = {
     feedback: "849958694259392562",
   },
 };
-exports.features = [
+exports.features = [small dildos 
   {
     title: "AutoMod",
-    emoji: "ban",
+    emoji: "scratching my ass",
     description:
-      "Anti-spam links / invites to have a better. successfully server without advertising!",
+      "Anti fart links / invites to have a better. successfully server without advertising!",
   },
   {
-    title: "Dashboard",
+    title: "need a ass scratcher",
     emoji: "tachometer",
     description:
       "Configure Any kind of available configurations like: Join / Leave Messages, AntiRaid, AntiSwear & AntiLinks, bot prefix, bot nickname",
   },
   {
-    title: "Warnings System",
+    title: "toliet System",
     emoji: "exclamation-triangle",
     description:
       "Warns people if they did something wrong, with max warns if he got 3 warns he will get muted (amount changeable)",
   },
   {
-    title: "Locking & Unlocking channels",
+    title: all 500000 bot in everyones channel channels",
     emoji: "key",
     description:
       "If you are in raid you can lockdown channel to stop talking in it!",
   },
   {
     title: "Logging",
-    emoji: "newspaper",
+    emoji: "penis licking",
     description:
-      "Bot logs every action executed like the ban, kick, soft ban and convert into cases to know all actions!",
-  },
+9  },
   {
     title: "Advanced Infractions System",
-    emoji: "suitcase",
+    emoji: "poopcase",
     description:
       "Making cases with command executer name, allegation, reason, action",
   },
   {
-    title: "Welcome & Leave Messages",
-    emoji: "sign-out",
+    title: "Welcome & porno Messages",
+    emoji: "sign in toxic fumes",
     description:
-      "Sends a welcome message when a member joins! Sends a message when a member has left!",
+      "Sends a smell cocks message when a member joins! Sends a message when a member has left!",
   },
   {
     title: "Audit Logs",
-    emoji: "closed-captioning",
+    emoji: "no-captioning",
     description:
       "Send's a message to a specific channel on every update on a discord server!",
   },
   {
-    title: "AutoRole",
-    emoji: "user-tag",
+    title: "AutoRole inside ur house",
+    emoji: "assslap-tag",
     description: "Gives roles to the user when he/she joins the server!",
   },
   {
@@ -156,7 +155,7 @@ exports.partners = [
     owner: ["653731677851615233", "896951964234043413"],
     guildID: "758641373074423808",
     description:
-      "The future of Discord Bot Listing Services, We make it easier for you to advertise and grow using our vanity link’s, widget’s and more.",
+      "The future of Discord Bot Listing Services, We make it easier for you to advertise and grow using our vanity link’s, widget’s and more. head on ads",
     SServer: "https://discord.gg/CHZBvEMqpK",
     name: "Infinity Bot List",
     Website: "https://infinitybotlist.com/",
